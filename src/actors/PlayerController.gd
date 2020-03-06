@@ -4,10 +4,10 @@ extends KinematicBody2D
 export var speed: = 1000.0
 export var gravity: = 3000.0
 export var jumpstrenght: = 500.0
+var _velocity: = Vector2.ZERO
 
 
 func _physics_process(delta):
-	var _velocity
 	var _direction
 	get_speed(_velocity, _direction)
 	_velocity = move_and_slide(_velocity, Vector2.UP)
