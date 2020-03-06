@@ -1,5 +1,11 @@
 extends KinematicBody2D
+class_name actor
 
-export var speed: = 1000.0
+var _velocity: = Vector2.ZERO
+var _newvelocity: = Vector2.ZERO
+
+export var speed: = 3000.0
 export var gravity: = 3000.0
-export var jumpstrenght: = 500.0
+export var jumpstrength: = 500.0
+export var maxvelocity: = 2000.0
+export var maxfallvelocity = 5000.0
