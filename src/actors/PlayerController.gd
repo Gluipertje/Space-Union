@@ -18,6 +18,7 @@ func _ready():
 func _physics_process(delta):
 	_velocity = get_speed(_velocity, _direction)
 	_velocity = move_and_slide(_velocity, Vector2.UP)
+	print(Engine.get_frames_per_second())
 	
 func get_speed(_velocity, _direction):
 	var moveRight = Input.is_action_pressed("move_right")
@@ -52,6 +53,5 @@ func get_speed(_velocity, _direction):
 	else:
 		_newvelocity.x = 0
 	
-	print(stamina)
 	return _newvelocity
 	

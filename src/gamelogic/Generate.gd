@@ -61,5 +61,11 @@ func generate():
 func spawnPlayer(prevPosy, curPosx):
 	var scene = load("res://src/actors/Player.tscn")
 	var player = scene.instance()
+	#var player = get_node("../Player")
+	#var gui = get_node("../Player/CanvasLayer")
 	add_child(player)
 	player.set_position(Vector2(curPosx * 16, prevPosy * 16 - 32))
+
+
+func _on_Player_player_stats_changed() -> void:
+	pass # Replace with function body.
