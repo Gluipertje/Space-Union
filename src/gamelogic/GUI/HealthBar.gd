@@ -1,4 +1,4 @@
-extends ColorRect
+extends ProgressBar
 
 func _on_Player_player_stats_changed(var player):
-	$Bar.rect_size.x = 72 * player.stamina / player.maxStamina
+	size_flags_vertical = 72 * player.stamina / player.maxStamina
