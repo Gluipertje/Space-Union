@@ -15,8 +15,12 @@ step = 1.0
 collision_mask = 8
 script = ExtResource( 2 )
 speed = 100.0
-jumpstrength = 300.0
+gravity = 600.0
+jumpstrength = 150.0
 maxvelocity = 3000.0
+maxfallvelocity = 1000.0
+staminaDepletion = 15.0
+staminaRegeneration = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1, 1 )
@@ -33,5 +37,4 @@ script = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 2, 2 )
-smoothing_enabled = true
+zoom = Vector2( 0.5, 0.5 )
