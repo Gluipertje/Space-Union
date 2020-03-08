@@ -13,7 +13,10 @@ var curPosx : = curPos.x
 
 
 func _ready() -> void:
-	randomize()
+	var seedRaw = '127386541280102361206206578264096982346896'
+	var seedA = seed(seedRaw.hash())
+	seed(seedRaw.hash())
+	print(seedA)
 	generate()
 	
 	
@@ -25,6 +28,7 @@ func generate():
 	var prevRand
 	var prevPosy = startGen.y + 1
 	set_cell_size(Vector2(16, 16))
+	randomize()
 	for curPosx in range(startGen.x, worldSize, smoothness): #Generates random slices according to the worldsize
 		if prevRand == 5:
 			rand = rand_range(3, 5)
@@ -55,7 +59,6 @@ func generate():
 				set_cell(startGen.x + curPosx, i, 6)
 		if curPosx == worldSize / 2:
 			spawnPlayer(prevPosy, curPosx)
-		print (curPosx)
 	
 	
 func spawnPlayer(prevPosy, curPosx):
