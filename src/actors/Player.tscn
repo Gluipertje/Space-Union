@@ -1,13 +1,42 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://assets/Character/Idle/Character01IdleSheet1.png" type="Texture" id=1]
+[ext_resource path="res://assets/Character/Idle/Character02IdleSheet1.png" type="Texture" id=1]
 [ext_resource path="res://src/actors/PlayerController.gd" type="Script" id=2]
 [ext_resource path="res://src/actors/Sprite.gd" type="Script" id=3]
 [ext_resource path="res://src/gamelogic/GUI/StaminaBar.gd" type="Script" id=4]
 [ext_resource path="res://src/gamelogic/GUI/SaveButton.gd" type="Script" id=5]
+[ext_resource path="res://assets/Character/Idle/Character02IdleSheet4.png" type="Texture" id=6]
+[ext_resource path="res://assets/Character/Idle/Character02IdleSheet3.png" type="Texture" id=7]
+[ext_resource path="res://assets/Character/Idle/Character02IdleSheet2.png" type="Texture" id=8]
+[ext_resource path="res://assets/Fire.png" type="Texture" id=9]
+[ext_resource path="res://src/gamelogic/GUI/JetpackBar.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7, 13 )
+
+[sub_resource type="AnimatedTexture" id=2]
+frames = 4
+fps = 1.0
+frame_0/texture = ExtResource( 1 )
+frame_1/texture = ExtResource( 8 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 7 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 6 )
+frame_3/delay_sec = 0.0
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 1
+emission_sphere_radius = 2.47
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 500, 0 )
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 50.0
+angle_random = 0.57
+scale_random = 0.5
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( -2, 0 )
@@ -21,6 +50,7 @@ maxfallvelocity = 1000.0
 staminaDepletion = 15.0
 staminaRegeneration = 5.0
 maxStamina = 100.0
+JPDepletion = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1, 1 )
@@ -29,18 +59,18 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.33008, 0.33008 )
 scale = Vector2( 1.70874, 1.70874 )
-texture = ExtResource( 1 )
+texture = SubResource( 2 )
 script = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.5, 0.5 )
+zoom = Vector2( 0.4, 0.4 )
 
 [node name="Stamina" type="ColorRect" parent="Camera2D"]
-margin_left = -312.265
-margin_top = -170.573
-margin_right = -272.265
-margin_bottom = -140.573
+margin_left = -250.517
+margin_top = -138.229
+margin_right = -210.517
+margin_bottom = -108.229
 rect_scale = Vector2( 4.36, 0.799999 )
 color = Color( 0.109804, 0.109804, 0.109804, 1 )
 script = ExtResource( 4 )
@@ -49,6 +79,27 @@ __meta__ = {
 }
 
 [node name="Bar" type="ColorRect" parent="Camera2D/Stamina"]
+margin_left = 0.948174
+margin_top = 4.71761
+margin_right = 38.9482
+margin_bottom = 24.7176
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Jetpack" type="ColorRect" parent="Camera2D"]
+margin_left = -249.782
+margin_top = -110.295
+margin_right = -209.782
+margin_bottom = -80.2951
+rect_scale = Vector2( 4.36, 0.799999 )
+color = Color( 0.109804, 0.109804, 0.109804, 1 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bar1" type="ColorRect" parent="Camera2D/Jetpack"]
 margin_left = 0.948174
 margin_top = 4.71761
 margin_right = 38.9482
@@ -68,5 +119,24 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FPSText" type="Label" parent="Camera2D"]
+margin_left = 227.317
+margin_top = -141.275
+margin_right = 253.317
+margin_bottom = -127.275
+rect_scale = Vector2( 0.5, 0.5 )
+text = "FPS:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( -5.614, 11.291 )
+z_index = -10
+amount = 20
+process_material = SubResource( 3 )
+texture = ExtResource( 9 )
+[connection signal="player_stats_changed" from="." to="Camera2D/Jetpack" method="_on_Player_player_stats_changed"]
 [connection signal="player_stats_changed" from="." to="Camera2D/Stamina" method="_on_Player_player_stats_changed"]
 [connection signal="pressed" from="Camera2D/Button" to="Camera2D/Button" method="_on_Button_pressed"]

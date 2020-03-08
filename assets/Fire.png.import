@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Character01IdleSheet5.png-0500e5f3adf486a419c5b1ca339fbd79.stex"
+path="res://.import/Fire.png-f84a808fcb1f891286409933f69db5de.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Character/Idle/Character01IdleSheet5.png"
-dest_files=[ "res://.import/Character01IdleSheet5.png-0500e5f3adf486a419c5b1ca339fbd79.stex" ]
+source_file="res://assets/Fire.png"
+dest_files=[ "res://.import/Fire.png-f84a808fcb1f891286409933f69db5de.stex" ]
 
 [params]
 

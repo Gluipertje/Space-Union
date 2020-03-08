@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Character01IdleSheet6.png-feea35dfb570ad0c4dbb6ab3a9712e16.stex"
+path="res://.import/TilesetAlien1.png-97b8f7e47268cab6853499a367e483ed.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Character/Idle/Character01IdleSheet6.png"
-dest_files=[ "res://.import/Character01IdleSheet6.png-feea35dfb570ad0c4dbb6ab3a9712e16.stex" ]
+source_file="res://assets/TilesetAlien1.png"
+dest_files=[ "res://.import/TilesetAlien1.png-97b8f7e47268cab6853499a367e483ed.stex" ]
 
 [params]
 
