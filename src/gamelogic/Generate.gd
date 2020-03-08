@@ -1,23 +1,21 @@
 extends TileMap
 
-var _realWorldSize
-var _realStartPos
-
 export var worldSize: = 600
 export var smoothness: = 1
 var tileSet: =  'res://src/tileset2.tres'
+onready var seedRaw = global.rawSeed
 var startPos: = Vector2(0 ,0)
 var startGen: = Vector2(0, 0)
 var curPos: = Vector2(0, 0)
 var curPosx : = curPos.x
 
 func _ready() -> void:
-	var seedRaw = '127386541280102361206206578264096982346896'
-	seed(seedRaw.hash())
-	generate()
+	generate(seedRaw)
 	setCameraLimit()
 	
-func generate():
+	
+func generate(seedRaw):
+	seed(seedRaw)
 	set_tileset(load(tileSet))
 	var rand
 	var prevRand
@@ -51,16 +49,25 @@ func generate():
 			prevRand = rand
 			for i in range(prevPosy + 1, 100):
 				set_cell(startGen.x + curPosx, i, 4)
-		if curPosx == worldSize / 2:
+		
+		if curPosx == worldSize - 32:
 			spawnPlayer(prevPosy, curPosx)
+			
+		if curPosx == 0:
+			global.coordinateStart = Vector2(curPosx, prevPosy)
+			print(global.coordinateStart)
+			
+		if curPosx == worldSize - 1:
+			global.coordinateEnd = Vector2(curPosx * 16, prevPosy * 16)
+			print(global.coordinateEnd)
 	
 	
 
 func setCameraLimit():
-	_realWorldSize = map_to_world(Vector2(worldSize, 0))
-	_realStartPos = map_to_world(startPos)
-	$Player/Camera2D.limit_left = _realStartPos.x - 32
-	$Player/Camera2D.limit_right = _realWorldSize.x + 32
+	global._realWorldSize = map_to_world(Vector2(worldSize, 0))
+	global._realStartPos = map_to_world(startPos)
+	$Player/Camera2D.limit_left = global._realStartPos.x + 32
+	$Player/Camera2D.limit_right = global._realWorldSize.x - 32
 	$Player/Camera2D.limit_top = -5000
 	$Player/Camera2D.limit_bottom = 5000
 	
@@ -71,7 +78,3 @@ func spawnPlayer(prevPosy, curPosx):
 	#var gui = get_node("../Player/CanvasLayer")
 	add_child(player)
 	player.set_position(Vector2(curPosx * 16, prevPosy * 16 - 32))
-
-
-func _on_Player_player_stats_changed() -> void:
-	pass # Replace with function body.

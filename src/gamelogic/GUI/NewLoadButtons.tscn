@@ -10,21 +10,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="."]
-margin_left = 10.834
-margin_top = 671.764
-margin_right = 160.834
-margin_bottom = 711.764
-text = "Load World"
-
 [node name="Button2" type="Button" parent="."]
-margin_left = 10.8336
-margin_top = 618.002
-margin_right = 160.834
-margin_bottom = 658.002
+margin_left = 13.4873
+margin_top = 671.076
+margin_right = 163.488
+margin_bottom = 711.076
 text = "New World"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_left = 177.649
+margin_top = 676.922
+margin_right = 449.649
+margin_bottom = 700.922
+placeholder_text = "Seed"
+placeholder_alpha = 0.858
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]
+[connection signal="text_entered" from="LineEdit" to="." method="_on_LineEdit_text_entered"]

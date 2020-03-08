@@ -1,31 +1,16 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/Character/Idle/Character02IdleSheet1.png" type="Texture" id=1]
-[ext_resource path="res://src/actors/PlayerController.gd" type="Script" id=2]
+[ext_resource path="res://src/actors/PlayerController.gd" type="Script" id=1]
+[ext_resource path="res://src/actors/Animations/playerIdle.tres" type="Texture" id=2]
 [ext_resource path="res://src/actors/Sprite.gd" type="Script" id=3]
 [ext_resource path="res://src/gamelogic/GUI/StaminaBar.gd" type="Script" id=4]
 [ext_resource path="res://src/gamelogic/GUI/SaveButton.gd" type="Script" id=5]
-[ext_resource path="res://assets/Character/Idle/Character02IdleSheet4.png" type="Texture" id=6]
-[ext_resource path="res://assets/Character/Idle/Character02IdleSheet3.png" type="Texture" id=7]
-[ext_resource path="res://assets/Character/Idle/Character02IdleSheet2.png" type="Texture" id=8]
-[ext_resource path="res://assets/Fire.png" type="Texture" id=9]
 [ext_resource path="res://src/gamelogic/GUI/JetpackBar.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7, 13 )
 
-[sub_resource type="AnimatedTexture" id=2]
-frames = 4
-fps = 1.0
-frame_0/texture = ExtResource( 1 )
-frame_1/texture = ExtResource( 8 )
-frame_1/delay_sec = 0.0
-frame_2/texture = ExtResource( 7 )
-frame_2/delay_sec = 0.0
-frame_3/texture = ExtResource( 6 )
-frame_3/delay_sec = 0.0
-
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticlesMaterial" id=2]
 emission_shape = 1
 emission_sphere_radius = 2.47
 flag_disable_z = true
@@ -38,18 +23,22 @@ damping = 50.0
 angle_random = 0.57
 scale_random = 0.5
 
+[sub_resource type="StreamTexture" id=3]
+load_path = "res://.import/Fire.png-f84a808fcb1f891286409933f69db5de.stex"
+
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( -2, 0 )
 collision_mask = 8
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 speed = 100.0
 gravity = 600.0
 jumpstrength = 150.0
 maxvelocity = 3000.0
 maxfallvelocity = 1000.0
+sprintmultiplier = 5.0
 staminaDepletion = 15.0
-staminaRegeneration = 5.0
-maxStamina = 100.0
+staminaRegeneration = 50.0
+maxStamina = 50.0
 JPDepletion = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -59,7 +48,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.33008, 0.33008 )
 scale = Vector2( 1.70874, 1.70874 )
-texture = SubResource( 2 )
+texture = ExtResource( 2 )
 script = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -135,8 +124,8 @@ __meta__ = {
 position = Vector2( -5.614, 11.291 )
 z_index = -10
 amount = 20
-process_material = SubResource( 3 )
-texture = ExtResource( 9 )
-[connection signal="player_stats_changed" from="." to="Camera2D/Jetpack" method="_on_Player_player_stats_changed"]
+process_material = SubResource( 2 )
+texture = SubResource( 3 )
 [connection signal="player_stats_changed" from="." to="Camera2D/Stamina" method="_on_Player_player_stats_changed"]
+[connection signal="player_stats_changed" from="." to="Camera2D/Jetpack" method="_on_Player_player_stats_changed"]
 [connection signal="pressed" from="Camera2D/Button" to="Camera2D/Button" method="_on_Button_pressed"]

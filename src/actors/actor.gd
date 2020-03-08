@@ -10,3 +10,4 @@ export var jumpstrength: = 500.0
 export var maxvelocity: = 2000.0
 export var maxfallvelocity: = 5000.0
 export var sprintmultiplier: = 1.7
+	
