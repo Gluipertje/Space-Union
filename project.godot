@@ -21,6 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Space Union"
+run/main_scene="res://src/scenes/menu.tscn"
 
 [autoload]
 

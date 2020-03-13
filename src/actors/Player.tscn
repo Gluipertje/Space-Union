@@ -49,12 +49,16 @@ scale = Vector2( 1.70874, 1.70874 )
 texture = ExtResource( 2 )
 script = ExtResource( 3 )
 
-[node name="Control" type="Control" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.4, 0.4 )
+
+[node name="Control" type="Control" parent="Camera2D"]
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Stamina" type="ColorRect" parent="Control"]
+[node name="Stamina" type="ColorRect" parent="Camera2D/Control"]
 margin_left = -250.517
 margin_top = -138.229
 margin_right = -210.517
@@ -66,7 +70,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bar" type="ColorRect" parent="Control/Stamina"]
+[node name="Bar" type="ColorRect" parent="Camera2D/Control/Stamina"]
 margin_left = 0.948174
 margin_top = 4.71761
 margin_right = 38.9482
@@ -75,7 +79,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Jetpack" type="ColorRect" parent="Control"]
+[node name="Jetpack" type="ColorRect" parent="Camera2D/Control"]
 margin_left = -249.782
 margin_top = -110.295
 margin_right = -209.782
@@ -87,7 +91,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bar1" type="ColorRect" parent="Control/Jetpack"]
+[node name="Bar1" type="ColorRect" parent="Camera2D/Control/Jetpack"]
 margin_left = 0.948174
 margin_top = 4.71761
 margin_right = 38.9482
@@ -96,7 +100,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="Control"]
+[node name="Button" type="Button" parent="Camera2D/Control"]
 visible = false
 margin_left = -311.0
 margin_top = 153.0
@@ -108,7 +112,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FPSText" type="Label" parent="Control"]
+[node name="FPSText" type="Label" parent="Camera2D/Control"]
 margin_left = 227.317
 margin_top = -141.275
 margin_right = 253.317
@@ -119,16 +123,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-zoom = Vector2( 0.4, 0.4 )
-
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( -5.614, 11.291 )
 z_index = -10
 amount = 20
 process_material = SubResource( 2 )
 texture = SubResource( 3 )
-[connection signal="player_stats_changed" from="." to="Control/Stamina" method="_on_Player_player_stats_changed"]
-[connection signal="player_stats_changed" from="." to="Control/Jetpack" method="_on_Player_player_stats_changed"]
-[connection signal="pressed" from="Control/Button" to="Control/Button" method="_on_Button_pressed"]
+[connection signal="player_stats_changed" from="." to="Camera2D/Control/Stamina" method="_on_Player_player_stats_changed"]
+[connection signal="player_stats_changed" from="." to="Camera2D/Control/Jetpack" method="_on_Player_player_stats_changed"]
+[connection signal="pressed" from="Camera2D/Control/Button" to="Camera2D/Control/Button" method="_on_Button_pressed"]
