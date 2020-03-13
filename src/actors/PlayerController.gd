@@ -95,6 +95,7 @@ func checkWorldEnd():
 	_playerPos = get_position()
 	print(_playerPos)
 	GUI.set_position(_playerPos)
+	print(GUI.get_position())
 	if _playerPos.x > global._realWorldSize.x:
 		set_position(global.coordinateStart)
 	elif _playerPos.x < global.coordinateStart.x:
