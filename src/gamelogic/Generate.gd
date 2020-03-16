@@ -35,20 +35,17 @@ func generate(seedRaw):
 			set_cell(startGen.x + curPosx, prevPosy, 6)
 			prevPosy = prevPosy + 1
 			prevRand = rand
-			for i in range(prevPosy + 1, 100):
-				set_cell(startGen.x + curPosx, i, 4) # This makes the dirt under the grass
+			genUnderground(prevPosy, curPosx, rand) # This makes the dirt under the grass
 		if rand == 0: # If the rand returns a 0 then the terrain will go up
 			set_cell(startGen.x + curPosx, prevPosy - 1, 1)
 			prevPosy = prevPosy - 1
 			prevRand = rand
-			for i in range(prevPosy + 1, 100):
-				set_cell(startGen.x + curPosx, i, 4)
+			genUnderground(prevPosy, curPosx, rand)
 			set_cell(startGen.x + curPosx, prevPosy + 1, 2)
 		if rand < 5 and rand > 0: # If it's neither then it will just stay flat
 			set_cell(startGen.x + curPosx, prevPosy, 0)
 			prevRand = rand
-			for i in range(prevPosy + 1, 100):
-				set_cell(startGen.x + curPosx, i, 4)
+			genUnderground(prevPosy, curPosx, rand)
 		
 		if curPosx == worldSize - 32:
 			spawnPlayer(prevPosy, curPosx)
@@ -61,7 +58,12 @@ func generate(seedRaw):
 			global.coordinateEnd = Vector2(curPosx * 16, prevPosy * 16)
 			print(global.coordinateEnd)
 	
-	
+func genUnderground(prevPosy, curPosx, rand):
+	for i in range(prevPosy + 1, 100):
+					set_cell(startGen.x + curPosx, i, 4)
+					if rand_range(0, 10) == 0:
+						set_cell(startGen.x + curPosx, rand_range(0, 100), 3)
+				
 
 func setCameraLimit():
 	global._realWorldSize = map_to_world(Vector2(worldSize, 0))

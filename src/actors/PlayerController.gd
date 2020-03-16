@@ -5,7 +5,6 @@ var _speednew
 var _playerPos
 var _jumpCount = 0 # This portion declares all 'private' variables which cant be accessed by other scripts
 
-onready var GUI = get_node("Control")
 onready var camera = get_node( "Camera2D" )
 onready var FPSText = get_node("Camera2D/Control/FPSText")
 onready var jetpackParticle = get_node( "Particles2D") # This portion gets some other nodes which are attached to the player
@@ -93,7 +92,6 @@ func move(_velocity, _direction):
 	
 func checkWorldEnd():
 	_playerPos = get_position()
-	print(_playerPos)
 	if _playerPos.x > global._realWorldSize.x:
 		set_position(global.coordinateStart)
 	elif _playerPos.x < global.coordinateStart.x:
