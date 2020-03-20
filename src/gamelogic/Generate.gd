@@ -17,10 +17,15 @@ func _ready() -> void:
 func generate(seedRaw):
 	seed(seedRaw)
 	set_tileset(load(tileSet))
+	set_cell_size(Vector2(16, 16))
+	genTerrain()
+	print (global.terrainArray)
+
+
+func genTerrain():
 	var rand
 	var prevRand
 	var prevPosy = startGen.y + 1
-	set_cell_size(Vector2(16, 16))
 	for curPosx in range(startGen.x, worldSize, smoothness): #Generates random slices according to the worldsize
 		if prevRand == 5:
 			rand = rand_range(3, 5)
@@ -36,16 +41,19 @@ func generate(seedRaw):
 			prevPosy = prevPosy + 1
 			prevRand = rand
 			genUnderground(prevPosy, curPosx, rand) # This makes the dirt under the grass
+			global.terrainArray.append([startGen.x + curPosx, prevPosy + 1])
 		if rand == 0: # If the rand returns a 0 then the terrain will go up
 			set_cell(startGen.x + curPosx, prevPosy - 1, 1)
 			prevPosy = prevPosy - 1
 			prevRand = rand
 			genUnderground(prevPosy, curPosx, rand)
 			set_cell(startGen.x + curPosx, prevPosy + 1, 2)
+			global.terrainArray.append([startGen.x + curPosx, prevPosy - 1])
 		if rand < 5 and rand > 0: # If it's neither then it will just stay flat
 			set_cell(startGen.x + curPosx, prevPosy, 0)
 			prevRand = rand
 			genUnderground(prevPosy, curPosx, rand)
+			global.terrainArray.append([startGen.x + curPosx, prevPosy])
 		
 		if curPosx == worldSize - 32:
 			spawnPlayer(prevPosy, curPosx)
@@ -58,6 +66,7 @@ func generate(seedRaw):
 			global.coordinateEnd = Vector2(curPosx * 16, prevPosy * 16)
 			print(global.coordinateEnd)
 	
+
 func genUnderground(prevPosy, curPosx, rand):
 	for i in range(prevPosy + 1, 100):
 					set_cell(startGen.x + curPosx, i, 4)
