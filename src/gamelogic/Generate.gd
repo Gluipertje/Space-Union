@@ -13,44 +13,56 @@ func generate(seedRaw):
 	set_cell_size(Vector2(16, 16))
 	var startGen = 0
 	var endGen = 600
-	genTerrain(startGen, endGen)
+	var biomeArray = []
+	genBiome(startGen, endGen, biomeArray)
+	print(biomeArray)
+	genTerrain(startGen, endGen, biomeArray)
 	genRocks(startGen, endGen)
 	print (global.terrainArray)
 	setCameraLimit(startGen, endGen)
 
+func genBiome(startGen, endGen, biomeArray):
+	pass
+		
+		
 
-func genTerrain(startGen, endGen):
+func genTerrain(startGen, endGen, biomeArray):
 	var rand
 	var prevRand
 	var prevPos = startGen + 1
 	for curPos in range(startGen, endGen, 1): #Generates random slices according to the worldsize
 		if prevRand == 5:
-			rand = rand_range(3, 5)
+			rand = rand_range(3 + biomeArray[curPos], 5)
 		elif prevRand == 0:
-			rand = rand_range(0, 2)
+			rand = rand_range(0, 2 - + biomeArray[curPos])
 		else:
 			rand = rand_range(0, 6)
+		
 		rand = int(rand) # This part makes it so the terrain is way less rough and more natural
-					
-		if rand == 5: # If the rand returns a 5 then the terrain will go down
+	
+		if rand == 5 and curPos > startGen + 3: # If the rand returns a 5 then the terrain will go down
 			set_cell(startGen + curPos, prevPos + 1, 5)
 			set_cell(startGen + curPos, prevPos, 6)
 			prevPos = prevPos + 1
 			prevRand = rand
 			genUnderground(prevPos, curPos, rand, startGen) # This makes the dirt under the grass
-			global.terrainArray.append([startGen + curPos, prevPos + 1])
-		if rand == 0: # If the rand returns a 0 then the terrain will go up
+			set_cell(startGen + curPos, prevPos - 2, 11) # Creates grass deco
+			global.terrainArray.append([startGen + curPos, prevPos + 1]) # Adds this tile to the global terrainArray
+		elif rand == 0 and curPos < endGen - 3: # If the rand returns a 0 then the terrain will go up
 			set_cell(startGen + curPos, prevPos - 1, 1)
 			prevPos = prevPos - 1
 			prevRand = rand
 			genUnderground(prevPos, curPos, rand, startGen)
 			set_cell(startGen + curPos, prevPos + 1, 2)
+			set_cell(startGen + curPos, prevPos - 1, 10)
 			global.terrainArray.append([startGen + curPos, prevPos - 1])
-		if rand < 5 and rand > 0: # If it's neither then it will just stay flat
+		else:
 			set_cell(startGen + curPos, prevPos, 0)
 			prevRand = rand
 			genUnderground(prevPos, curPos, rand, startGen)
+			set_cell(startGen + curPos, prevPos - 1, 8)
 			global.terrainArray.append([startGen + curPos, prevPos])
+		
 		
 		if curPos == endGen - 32:
 			spawnPlayer(prevPos, curPos)
@@ -73,8 +85,9 @@ func genRocks(startGen, endGen):
 		cur = global.terrainArray[i]
 		curY = cur[1]
 		if curY == prevY:
-			set_cell(i - 1, curY - 1, 7)
-			print('created deco!')
+			#set_cell(i - 1, curY - 1, 7)
+			#print('created deco!')
+			pass
 		prevY = curY
 		print(prevY, ', ', curY)
 

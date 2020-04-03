@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/actors/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://src/actors/Animations/playerIdle.tres" type="Texture" id=2]
@@ -10,31 +10,10 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7, 13 )
 
-[sub_resource type="ParticlesMaterial" id=2]
-trail_divisor = 2
-emission_shape = 1
-emission_sphere_radius = 2.47
-flag_disable_z = true
-direction = Vector3( 45.986, 0, 50 )
-spread = 6.8
-gravity = Vector3( 0, 500, 0 )
-initial_velocity_random = 0.26
-angular_velocity_random = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = -27.59
-angle = 360.0
-angle_random = 1.0
-scale = 2.0
-scale_random = 1.0
-color = Color( 1, 0.74902, 0, 1 )
-hue_variation_random = 1.0
-
-[sub_resource type="StreamTexture" id=3]
-load_path = "res://.import/Fire.png-f84a808fcb1f891286409933f69db5de.stex"
-
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( -2, 0 )
+z_index = -1
+z_as_relative = false
 collision_mask = 8
 script = ExtResource( 1 )
 speed = 100.0
@@ -129,14 +108,6 @@ text = "FPS:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Particles2D" type="Particles2D" parent="."]
-position = Vector2( -5.614, 11.291 )
-z_index = -10
-amount = 50
-fixed_fps = 120
-process_material = SubResource( 2 )
-texture = SubResource( 3 )
-[connection signal="player_stats_changed" from="." to="Camera2D/Control/Stamina" method="_on_Player_player_stats_changed"]
 [connection signal="player_stats_changed" from="." to="Camera2D/Control/Jetpack" method="_on_Player_player_stats_changed"]
+[connection signal="player_stats_changed" from="." to="Camera2D/Control/Stamina" method="_on_Player_player_stats_changed"]
 [connection signal="pressed" from="Camera2D/Control/Button" to="Camera2D/Control/Button" method="_on_Button_pressed"]
