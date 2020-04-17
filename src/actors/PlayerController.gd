@@ -53,23 +53,18 @@ func move(_velocity, _direction):
 	
 	
 	
-	if jump and _jumpCount == 0:
-		_newvelocity.y = -jumpstrength
-		_jumpCount += 1
-	if jump and _jumpCount > 0 and JPFuel > 0:
-		_newvelocity.y = -jumpstrength
+	if Input.is_action_pressed("jump") and JPFuel > 0:
+		_newvelocity.y = -300
 		JPFuel -= JPDepletion
 		emit_signal("player_stats_changed", self)
-		_jumpCount += 1
-		#jetpackParticle.emitting = true
-		
-	if !jump and JPFuel < maxJPFuel and is_on_floor():
+		_speednew = speed * sprintmultiplier
+	if JPFuel < maxJPFuel and is_on_floor():
 		JPFuel += JPRegeneration
 		emit_signal("player_stats_changed", self)
 		
 	
 	if is_on_floor():
-		_jumpCount = 0
+		_speednew = speed
 		
 	if moveRight:
 		_newvelocity.x = _speednew
