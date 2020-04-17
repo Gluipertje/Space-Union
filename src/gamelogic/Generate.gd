@@ -13,28 +13,19 @@ func generate(seedRaw):
 	set_cell_size(Vector2(16, 16))
 	var startGen = 0
 	var endGen = 600
-	var biomeArray = []
-	genBiome(startGen, endGen, biomeArray)
-	print(biomeArray)
-	genTerrain(startGen, endGen, biomeArray)
-	genRocks(startGen, endGen)
+	genTerrain(startGen, endGen)
 	print (global.terrainArray)
-	setCameraLimit(startGen, endGen)
+	setCameraLimit(startGen, endGen)	
 
-func genBiome(startGen, endGen, biomeArray):
-	pass
-		
-		
-
-func genTerrain(startGen, endGen, biomeArray):
+func genTerrain(startGen, endGen):
 	var rand
 	var prevRand
 	var prevPos = startGen + 1
 	for curPos in range(startGen, endGen, 1): #Generates random slices according to the worldsize
 		if prevRand == 5:
-			rand = rand_range(3 + biomeArray[curPos], 5)
+			rand = rand_range(3, 5)
 		elif prevRand == 0:
-			rand = rand_range(0, 2 - + biomeArray[curPos])
+			rand = rand_range(0, 2)
 		else:
 			rand = rand_range(0, 6)
 		
@@ -47,7 +38,7 @@ func genTerrain(startGen, endGen, biomeArray):
 			prevRand = rand
 			genUnderground(prevPos, curPos, rand, startGen) # This makes the dirt under the grass
 			set_cell(startGen + curPos, prevPos - 2, 11) # Creates grass deco
-			global.terrainArray.append([startGen + curPos, prevPos + 1]) # Adds this tile to the global terrainArray
+			global.terrainArray.append([prevPos + 1]) # Adds this tile to the global terrainArray
 		elif rand == 0 and curPos < endGen - 3: # If the rand returns a 0 then the terrain will go up
 			set_cell(startGen + curPos, prevPos - 1, 1)
 			prevPos = prevPos - 1
@@ -55,13 +46,13 @@ func genTerrain(startGen, endGen, biomeArray):
 			genUnderground(prevPos, curPos, rand, startGen)
 			set_cell(startGen + curPos, prevPos + 1, 2)
 			set_cell(startGen + curPos, prevPos - 1, 10)
-			global.terrainArray.append([startGen + curPos, prevPos - 1])
+			global.terrainArray.append([prevPos - 1])
 		else:
 			set_cell(startGen + curPos, prevPos, 0)
 			prevRand = rand
 			genUnderground(prevPos, curPos, rand, startGen)
 			set_cell(startGen + curPos, prevPos - 1, 8)
-			global.terrainArray.append([startGen + curPos, prevPos])
+			global.terrainArray.append([prevPos])
 		
 		
 		if curPos == endGen - 32:
@@ -74,22 +65,6 @@ func genTerrain(startGen, endGen, biomeArray):
 		if curPos == endGen - 1:
 			global.coordinateEnd = Vector2(curPos * 16, prevPos * 16)
 			print(global.coordinateEnd)
-
-func genRocks(startGen, endGen):
-	var curY
-	var cur
-	var prevY
-	var rand
-	for i in range(startGen, endGen):
-		rand = rand_range(0, 3)
-		cur = global.terrainArray[i]
-		curY = cur[1]
-		if curY == prevY:
-			#set_cell(i - 1, curY - 1, 7)
-			#print('created deco!')
-			pass
-		prevY = curY
-		print(prevY, ', ', curY)
 
 func genUnderground(prevPos, curPos, rand, startGen):
 	for i in range(prevPos + 1, 100):

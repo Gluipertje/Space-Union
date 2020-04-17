@@ -94,7 +94,7 @@ func move(_velocity, _direction):
 func checkWorldEnd():
 	_playerPos = get_position()
 	if _playerPos.x > global._realWorldSize.x:
-		set_position(global.coordinateStart)
+		set_position(Vector2(global.coordinateStart.x, global.coordinateStart.y))
 	elif _playerPos.x < global.coordinateStart.x:
 		print(Vector2(global.coordinateEnd.x - 1, global.coordinateEnd.y))
-		set_position(Vector2(global.coordinateEnd.x, global.coordinateEnd.y - 6))
+		set_position(Vector2(global.coordinateEnd.x, global.coordinateEnd.y - 10))
