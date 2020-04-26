@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/actors/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://src/actors/Animations/playerIdle.tres" type="Texture" id=2]
-[ext_resource path="res://src/actors/Sprite.gd" type="Script" id=3]
-[ext_resource path="res://src/gamelogic/GUI/StaminaBar.gd" type="Script" id=4]
 [ext_resource path="res://src/gamelogic/GUI/SaveButton.gd" type="Script" id=5]
 [ext_resource path="res://src/gamelogic/GUI/JetpackBar.gd" type="Script" id=10]
 
@@ -17,71 +15,27 @@ z_as_relative = false
 collision_mask = 8
 script = ExtResource( 1 )
 speed = 100.0
-gravity = 600.0
-jumpstrength = 150.0
-maxvelocity = 3000.0
-maxfallvelocity = 1000.0
+gravity = 500.0
+jumpstrength = 50.0
+maxvelocity = 300.0
+maxfallvelocity = 500.0
 sprintmultiplier = 2.0
-staminaDepletion = 15.0
-JPDepletion = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1, 1 )
+position = Vector2( 0, 1 )
+scale = Vector2( 1.567, 1.188 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0.33008, 0.33008 )
-scale = Vector2( 1.70874, 1.70874 )
+scale = Vector2( 2.1, 2.1 )
 texture = ExtResource( 2 )
-script = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 0, -39.049 )
 current = true
 zoom = Vector2( 0.4, 0.4 )
 
 [node name="Control" type="Control" parent="Camera2D"]
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Stamina" type="ColorRect" parent="Camera2D/Control"]
-margin_left = -250.517
-margin_top = -138.229
-margin_right = -210.517
-margin_bottom = -108.229
-rect_scale = Vector2( 4.36, 0.799999 )
-color = Color( 0.109804, 0.109804, 0.109804, 1 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Bar" type="ColorRect" parent="Camera2D/Control/Stamina"]
-margin_left = 0.948174
-margin_top = 4.71761
-margin_right = 38.9482
-margin_bottom = 24.7176
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Jetpack" type="ColorRect" parent="Camera2D/Control"]
-margin_left = -249.782
-margin_top = -110.295
-margin_right = -209.782
-margin_bottom = -80.2951
-rect_scale = Vector2( 4.36, 0.799999 )
-color = Color( 0.109804, 0.109804, 0.109804, 1 )
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Bar1" type="ColorRect" parent="Camera2D/Control/Jetpack"]
-margin_left = 0.948174
-margin_top = 4.71761
-margin_right = 38.9482
-margin_bottom = 24.7176
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -99,15 +53,55 @@ __meta__ = {
 }
 
 [node name="FPSText" type="Label" parent="Camera2D/Control"]
-margin_left = 227.317
-margin_top = -141.275
-margin_right = 253.317
-margin_bottom = -127.275
+margin_left = 221.812
+margin_top = -174.577
+margin_right = 251.812
+margin_bottom = -158.577
 rect_scale = Vector2( 0.5, 0.5 )
 text = "FPS:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="player_stats_changed" from="." to="Camera2D/Control/Stamina" method="_on_Player_player_stats_changed"]
+
+[node name="Stamina" type="ColorRect" parent="Camera2D/Control"]
+visible = false
+margin_left = -256.0
+margin_top = -143.0
+margin_right = -200.0
+margin_bottom = -103.0
+color = Color( 0.109804, 0.109804, 0.109804, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bar" type="ColorRect" parent="Camera2D/Control/Stamina"]
+visible = false
+margin_left = 0.948174
+margin_top = 4.71761
+margin_right = 38.9482
+margin_bottom = 24.7176
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Jetpack" type="ColorRect" parent="Camera2D/Control"]
+margin_left = -249.864
+margin_top = -173.585
+margin_right = -127.864
+margin_bottom = -130.585
+color = Color( 0.109804, 0.109804, 0.109804, 1 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bar1" type="ColorRect" parent="Camera2D/Control/Jetpack"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 118.0
+margin_bottom = 39.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="player_stats_changed" from="." to="Camera2D/Control/Jetpack" method="_on_Player_player_stats_changed"]
 [connection signal="pressed" from="Camera2D/Control/Button" to="Camera2D/Control/Button" method="_on_Button_pressed"]

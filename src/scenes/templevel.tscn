@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/gamelogic/WorldGen.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/gamelogic/Rocks1.gd" type="Script" id=2]
+[ext_resource path="res://src/gamelogic/Trees1.gd" type="Script" id=3]
 
 [node name="Node" type="Node2D"]
 
 [node name="TileMap" parent="." instance=ExtResource( 1 )]
 position = Vector2( 0, 0 )
+
+[node name="Rocks1" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="Trees1" type="Node2D" parent="."]
+script = ExtResource( 3 )

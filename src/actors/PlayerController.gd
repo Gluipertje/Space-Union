@@ -1,4 +1,6 @@
 extends actor
+var canJump
+var canSprint
 var _direction
 var _thisPos 
 var _speednew
@@ -7,16 +9,15 @@ var _jumpCount = 0 # This portion declares all 'private' variables which cant be
 
 onready var camera = get_node( "Camera2D" )
 onready var FPSText = get_node("Camera2D/Control/FPSText")
-onready var jetpackParticle = get_node( "Particles2D") # This portion gets some other nodes which are attached to the player
+#onready var jetpackParticle = get_node( "Particles2D") # This portion gets some other nodes which are attached to the player
  
-var stamina: = 500.0
+var normalJumpStrength = 180
+var jetJumpStrenth = 150
 var JPFuel = 500.0
-export var staminaDepletion: = 100.0
-export var staminaRegeneration: = 50.0
-export var maxStamina = 500.0
-export var maxJPFuel = 500.0
-export var JPDepletion = 5.0
-export var JPRegeneration = 2.0 # This portion declares some variables specific to only the player such as stamina, etc.
+var maxJPFuel = 500.0
+var JPDepletion = 10.0
+var JPSprintDepletion = 5.0
+var JPRegeneration = 1.0 # This portion declares some variables specific to only the player such as jpfuel, etc.
 
 signal player_stats_changed # Creates a signal so when the player stats change, the GUI elements get updated
 
@@ -29,7 +30,7 @@ func _physics_process(delta):
 	_velocity = move_and_slide(_velocity, Vector2.UP) # Applies the velocity every frame
 	checkWorldEnd()
 	FPSText.text = ('FPS: ' + str(Engine.get_frames_per_second())) # Prints FPS
-	if Input.is_action_pressed("posDebug"):
+	if Input.is_action_just_pressed("posDebug"):
 		print(get_position())
 	
 func move(_velocity, _direction):
@@ -38,34 +39,51 @@ func move(_velocity, _direction):
 	var jump = Input.is_action_just_pressed("jump")
 	var sprint = Input.is_action_pressed("sprint") # Checks if keys are pressed, if they are that specific variable gets set to 'true' in that specific frame
 	
+	if is_on_floor() and JPFuel == maxJPFuel:
+		canJump = true
+		canSprint = true
+		emit_signal("player_stats_changed", self)
+	
+	if is_on_floor():
+		_jumpCount = 0
+	
 	if !is_on_floor() and _velocity.y < maxfallvelocity:
 		_newvelocity.y += gravity * get_physics_process_delta_time()
+		emit_signal("player_stats_changed", self)
 		
-	if sprint and stamina > 0 and (moveRight or moveLeft):
+	if sprint and JPFuel > 1 and (moveRight or moveLeft) and canSprint:
 		_speednew = speed * sprintmultiplier
-		stamina -= staminaDepletion * get_process_delta_time()
+		JPFuel -= JPSprintDepletion
 		emit_signal("player_stats_changed", self)
 	else:
 		_speednew = speed
-		if stamina < maxStamina:
-			stamina += staminaRegeneration * get_process_delta_time()
+		if JPFuel < maxJPFuel and (is_on_floor() or _jumpCount < 2):
+			JPFuel += JPRegeneration
 			emit_signal("player_stats_changed", self)
-	
-	
-	
-	if Input.is_action_pressed("jump") and JPFuel > 0:
-		_newvelocity.y = -300
-		JPFuel -= JPDepletion
-		emit_signal("player_stats_changed", self)
-		_speednew = speed * sprintmultiplier
-	if JPFuel < maxJPFuel and is_on_floor():
+	if JPFuel < 1:
+		canSprint = false
+
+	if Input.is_action_just_pressed("jump") and _jumpCount == 0:
+		_jumpCount += 1
+		_newvelocity.y = -normalJumpStrength
+	elif Input.is_action_just_pressed("jump") and JPFuel > 1 and _jumpCount >= 1:
+		if canJump:
+			_newvelocity.y = -normalJumpStrength
+			JPFuel -= JPDepletion
+			emit_signal("player_stats_changed", self)
+			_jumpCount += 1
+	elif Input.is_action_pressed("jump") and JPFuel > 1 and _jumpCount >= 2:
+		if canJump:
+			_newvelocity.y = -jetJumpStrenth
+			JPFuel -= JPDepletion
+			emit_signal("player_stats_changed", self)
+			_jumpCount += 1
+	if JPFuel < 1 and !is_on_floor():
+		canJump = false	
+	if JPFuel < maxJPFuel and (is_on_floor() or _jumpCount < 2):
 		JPFuel += JPRegeneration
 		emit_signal("player_stats_changed", self)
-		
 	
-	if is_on_floor():
-		_speednew = speed
-		
 	if moveRight:
 		_newvelocity.x = _speednew
 		get_node( "Sprite" ).set_texture(load('res://src/actors/Animations/playerWalk.tres'))
@@ -92,4 +110,4 @@ func checkWorldEnd():
 		set_position(Vector2(global.coordinateStart.x, global.coordinateStart.y))
 	elif _playerPos.x < global.coordinateStart.x:
 		print(Vector2(global.coordinateEnd.x - 1, global.coordinateEnd.y))
-		set_position(Vector2(global.coordinateEnd.x, global.coordinateEnd.y - 10))
+		set_position(Vector2(global.coordinateEnd.x, global.coordinateEnd.y - 32))
