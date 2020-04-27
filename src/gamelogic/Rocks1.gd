@@ -17,7 +17,7 @@ func GenRocks1():
 		var rockC = rocks[rand_range(0, rocks.size())]
 		var randTS = rand_range(0, rocksS.size()) 
 		var randTM = rand_range(0, rocksM.size())
-		var rand = randi() % 20
+		var rand = randi() % 10
 		if rand == 5:
 			if rockC == rocksS:
 				if terrain[x] - terrain[x + 1] != 16 and terrain[x] - terrain[x - 1] != 16:

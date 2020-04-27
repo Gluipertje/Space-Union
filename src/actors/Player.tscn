@@ -12,7 +12,7 @@ extents = Vector2( 7, 13 )
 position = Vector2( -2, 0 )
 z_index = -1
 z_as_relative = false
-collision_mask = 8
+collision_mask = 4
 script = ExtResource( 1 )
 speed = 100.0
 gravity = 500.0
@@ -100,6 +100,17 @@ margin_left = 4.0
 margin_top = 4.0
 margin_right = 118.0
 margin_bottom = 39.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StoneText" type="Label" parent="Camera2D/Control"]
+margin_left = -248.0
+margin_top = -124.0
+margin_right = -129.0
+margin_bottom = -110.0
+rect_scale = Vector2( 0.7, 0.7 )
+text = "Stone: "
 __meta__ = {
 "_edit_use_anchors_": false
 }

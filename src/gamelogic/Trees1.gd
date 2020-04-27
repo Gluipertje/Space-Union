@@ -15,7 +15,7 @@ func GenTrees1():
 		var randT = rand_range(0, trees.size()) 
 		var rand = randi() % 5
 		if rand == 4:
-			if terrain[x] - terrain[x + 1] != 16 and terrain[x] - terrain[x - 1] != 16:
+			#if terrain[x] - terrain[x + 1] != 16 and terrain[x] - terrain[x - 1] != 16:
 				var Tre = trees[randT]
 				var Treein = Tre.instance()
 				Treein.position = Vector2(x * 16, terrain[x] - 24)

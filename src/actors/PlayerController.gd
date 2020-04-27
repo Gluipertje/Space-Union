@@ -7,8 +7,9 @@ var _speednew
 var _playerPos
 var _jumpCount = 0 # This portion declares all 'private' variables which cant be accessed by other scripts
 
-onready var camera = get_node( "Camera2D" )
+onready var camera = get_node("Camera2D")
 onready var FPSText = get_node("Camera2D/Control/FPSText")
+onready var StoneText = get_node("Camera2D/Control/StoneText")
 #onready var jetpackParticle = get_node( "Particles2D") # This portion gets some other nodes which are attached to the player
  
 var normalJumpStrength = 180
@@ -30,6 +31,7 @@ func _physics_process(delta):
 	_velocity = move_and_slide(_velocity, Vector2.UP) # Applies the velocity every frame
 	checkWorldEnd()
 	FPSText.text = ('FPS: ' + str(Engine.get_frames_per_second())) # Prints FPS
+	StoneText.text = ('Stone: ' + str(global.playerInventoryStone))
 	if Input.is_action_just_pressed("posDebug"):
 		print(get_position())
 	
