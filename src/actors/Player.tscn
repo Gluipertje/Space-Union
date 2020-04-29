@@ -6,7 +6,7 @@
 [ext_resource path="res://src/gamelogic/GUI/JetpackBar.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7, 13 )
+extents = Vector2( 5, 7.5 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( -2, 0 )
@@ -22,18 +22,16 @@ maxfallvelocity = 500.0
 sprintmultiplier = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 1 )
-scale = Vector2( 1.567, 1.188 )
+position = Vector2( 0, 0.5 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 2.1, 2.1 )
 texture = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 0, -39.049 )
 current = true
-zoom = Vector2( 0.4, 0.4 )
+zoom = Vector2( 0.2, 0.2 )
 
 [node name="Control" type="Control" parent="Camera2D"]
 __meta__ = {
@@ -53,11 +51,11 @@ __meta__ = {
 }
 
 [node name="FPSText" type="Label" parent="Camera2D/Control"]
-margin_left = 221.812
-margin_top = -174.577
-margin_right = 251.812
-margin_bottom = -158.577
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = 101.809
+margin_top = -108.088
+margin_right = 127.809
+margin_bottom = -94.0877
+rect_scale = Vector2( 0.2, 0.2 )
 text = "FPS:"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -85,10 +83,10 @@ __meta__ = {
 }
 
 [node name="Jetpack" type="ColorRect" parent="Camera2D/Control"]
-margin_left = -249.864
-margin_top = -173.585
-margin_right = -127.864
-margin_bottom = -130.585
+margin_left = -122.0
+margin_top = -107.0
+margin_right = -68.0
+margin_bottom = -88.0
 color = Color( 0.109804, 0.109804, 0.109804, 1 )
 script = ExtResource( 10 )
 __meta__ = {
@@ -96,20 +94,20 @@ __meta__ = {
 }
 
 [node name="Bar1" type="ColorRect" parent="Camera2D/Control/Jetpack"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 118.0
-margin_bottom = 39.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 52.0
+margin_bottom = 17.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="StoneText" type="Label" parent="Camera2D/Control"]
-margin_left = -248.0
-margin_top = -124.0
-margin_right = -129.0
-margin_bottom = -110.0
-rect_scale = Vector2( 0.7, 0.7 )
+margin_left = -121.248
+margin_top = -85.815
+margin_right = -2.24757
+margin_bottom = -71.815
+rect_scale = Vector2( 0.4, 0.4 )
 text = "Stone: "
 __meta__ = {
 "_edit_use_anchors_": false
