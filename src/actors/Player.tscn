@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/actors/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://src/actors/Animations/playerIdle.tres" type="Texture" id=2]
+[ext_resource path="res://assets/misc/lightgras.png" type="Texture" id=3]
 [ext_resource path="res://src/gamelogic/GUI/SaveButton.gd" type="Script" id=5]
 [ext_resource path="res://src/gamelogic/GUI/JetpackBar.gd" type="Script" id=10]
 
@@ -112,5 +113,9 @@ text = "Stone: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+color = Color( 1, 0.972549, 0.858824, 1 )
 [connection signal="player_stats_changed" from="." to="Camera2D/Control/Jetpack" method="_on_Player_player_stats_changed"]
 [connection signal="pressed" from="Camera2D/Control/Button" to="Camera2D/Control/Button" method="_on_Button_pressed"]
