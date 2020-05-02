@@ -8,6 +8,7 @@
 
 [node name="TileMap" parent="." instance=ExtResource( 1 )]
 position = Vector2( 0, 0 )
+z_index = 1
 
 [node name="Rocks1" type="Node2D" parent="."]
 script = ExtResource( 2 )

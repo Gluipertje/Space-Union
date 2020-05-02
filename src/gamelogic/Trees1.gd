@@ -6,8 +6,10 @@ onready var Tree1 = preload('res://src/obj/alien1/Tree3.tscn')
 onready var Tree2 = preload('res://src/obj/alien1/Tree2.tscn')
 onready var Tree3 = preload('res://src/obj/alien1/Tree4.tscn')
 onready var Tree4 = preload('res://src/obj/alien1/Tree5.tscn')
+onready var Tree5 = preload('res://src/obj/alien1/Tree6.tscn')
+onready var Tree6 = preload('res://src/obj/alien1/Tree7.tscn')
 
-onready var trees = [Tree1, Tree2, Tree3, Tree4]
+onready var trees = [Tree1, Tree2, Tree3, Tree4, Tree5, Tree6]
 
 func _ready() -> void:
 	GenTrees1()

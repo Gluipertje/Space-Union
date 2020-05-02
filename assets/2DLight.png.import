@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Tree15.png-e544f3d414c22cda6254882c8f14abb0.stex"
+path="res://.import/2DLight.png-d8e6068a858ad915c28b34703acd2d16.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Deco/Alien1/Tree15.png"
-dest_files=[ "res://.import/Tree15.png-e544f3d414c22cda6254882c8f14abb0.stex" ]
+source_file="res://assets/2DLight.png"
+dest_files=[ "res://.import/2DLight.png-d8e6068a858ad915c28b34703acd2d16.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

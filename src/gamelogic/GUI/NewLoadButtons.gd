@@ -1,6 +1,6 @@
 extends Control
 
-onready var newWorld = 'res://src/scenes/templevel.tscn'
+onready var newWorld = 'res://src/scenes/worldAl1.tscn'
 export var seedRaw: = '0'
 
 func _on_Button2_pressed() -> void:
