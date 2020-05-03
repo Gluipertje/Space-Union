@@ -2,11 +2,12 @@ extends Node2D
 
 var terrain = global.terrainArray
 
-onready var Rock1 = preload('res://src/obj/alien1/Rock1.tscn')
-onready var Rock2 = preload('res://src/obj/alien1/Rock2.tscn')
+onready var Rock1 = preload('res://src/obj/desert1/Rock1.tscn')
+onready var Rock2 = preload('res://src/obj/desert1/Rock2.tscn')
+onready var Rock3 = preload('res://src/obj/desert1/Rock3.tscn')
 
-onready var rocksS = [Rock1]
-onready var rocksM = [Rock2]
+onready var rocksS = [Rock3]
+onready var rocksM = [Rock1, Rock2]
 onready var rocks = [rocksS, rocksM]
 
 func _ready() -> void:

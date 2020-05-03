@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lightgras.png-47ba387bd5bad787546e24dfb1d62211.stex"
+path="res://.import/dogemapart.png-a61da1f99df68dd3371db8e9a317c4b8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/misc/lightgras.png"
-dest_files=[ "res://.import/lightgras.png-47ba387bd5bad787546e24dfb1d62211.stex" ]
+source_file="res://dogemapart.png"
+dest_files=[ "res://.import/dogemapart.png-a61da1f99df68dd3371db8e9a317c4b8.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

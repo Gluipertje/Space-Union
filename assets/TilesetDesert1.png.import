@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bg1.png-bea6453419024c7f77fe7ad1987516fc.stex"
+path="res://.import/TilesetDesert1.png-53f2504dd8f3846611ff253f3a2a3a15.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bg1.png"
-dest_files=[ "res://.import/bg1.png-bea6453419024c7f77fe7ad1987516fc.stex" ]
+source_file="res://assets/TilesetDesert1.png"
+dest_files=[ "res://.import/TilesetDesert1.png-53f2504dd8f3846611ff253f3a2a3a15.stex" ]
 
 [params]
 

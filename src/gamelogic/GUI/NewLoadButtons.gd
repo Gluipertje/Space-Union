@@ -1,10 +1,29 @@
 extends Control
 
-onready var newWorld = 'res://src/scenes/worldAl1.tscn'
+onready var newWorldAl1 = 'res://src/scenes/worldAl1.tscn'
+onready var newWorldDe1 = 'res://src/scenes/worldDe1.tscn'
 export var seedRaw: = '0'
+var didSeed = false
 
 func _on_Button2_pressed() -> void:
-	get_tree().change_scene(newWorld)
+	if !didSeed: 
+		var randSeed = getRandSeed()
+		global.rawSeed = randSeed
+	seed(global.rawSeed)
+	var rand = randi() % 4
+	print(rand)
+	if rand == 1:
+		get_tree().change_scene(newWorldAl1)
+	else:
+		get_tree().change_scene(newWorldDe1)
 	
 func _on_LineEdit_text_entered(new_text: String):
 	global.rawSeed = new_text.hash()
+	didSeed = true
+
+
+func getRandSeed():
+	randomize()
+	var rawSeed = randi() % 100
+	print(rawSeed)
+	return rawSeed

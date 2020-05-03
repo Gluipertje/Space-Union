@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bg1.png-bea6453419024c7f77fe7ad1987516fc.stex"
+path="res://.import/Tree1.png-215f4fb18b20b5933c101c705f21415e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bg1.png"
-dest_files=[ "res://.import/bg1.png-bea6453419024c7f77fe7ad1987516fc.stex" ]
+source_file="res://assets/Deco/Desert1/Tree1.png"
+dest_files=[ "res://.import/Tree1.png-215f4fb18b20b5933c101c705f21415e.stex" ]
 
 [params]
 

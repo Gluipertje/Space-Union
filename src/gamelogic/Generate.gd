@@ -1,6 +1,6 @@
 extends TileMap
 
-var tileSet: =  'res://src/tileset2.tres'
+export var tileSet: =  'res://src/tileset2.tres'
 onready var seedRaw = global.rawSeed
 
 func _ready() -> void:
@@ -14,7 +14,6 @@ func generate(seedRaw):
 	var endGen = 600
 	genTerrain(startGen, endGen)
 	setCameraLimit(startGen, endGen)
-	print(global.terrainArray)
 
 func genTerrain(startGen, endGen):
 	var rand

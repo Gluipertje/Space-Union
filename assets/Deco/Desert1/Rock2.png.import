@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bg1.png-bea6453419024c7f77fe7ad1987516fc.stex"
+path="res://.import/Rock2.png-0085ce482117194d64817151e4a02325.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bg1.png"
-dest_files=[ "res://.import/bg1.png-bea6453419024c7f77fe7ad1987516fc.stex" ]
+source_file="res://assets/Deco/Desert1/Rock2.png"
+dest_files=[ "res://.import/Rock2.png-0085ce482117194d64817151e4a02325.stex" ]
 
 [params]
 

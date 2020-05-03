@@ -22,6 +22,10 @@ _global_script_class_icons={
 
 config/name="Space Union"
 run/main_scene="res://src/scenes/menu.tscn"
+boot_splash/image="res://dogemapart.png"
+boot_splash/fullsize=false
+boot_splash/bg_color=Color( 0.00392157, 0.0313726, 0.207843, 1 )
+config/icon="res://dogemapart.png"
 
 [autoload]
 
