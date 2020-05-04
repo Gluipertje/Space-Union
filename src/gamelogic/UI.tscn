@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/gamelogic/GUI/JetpackBar.gd" type="Script" id=1]
+[ext_resource path="res://src/gamelogic/GUI/SaveButton.gd" type="Script" id=2]
+
+[node name="UI" type="CanvasLayer"]
+layer = 5
+
+[node name="a" type="ViewportContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="a"]
+visible = false
+margin_left = -311.0
+margin_top = 153.0
+margin_right = -207.0
+margin_bottom = 173.0
+text = "Save World"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FPSText" type="Label" parent="a"]
+margin_left = 101.809
+margin_top = -108.088
+margin_right = 127.809
+margin_bottom = -94.0877
+rect_scale = Vector2( 0.2, 0.2 )
+text = "FPS:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Jetpack" type="ColorRect" parent="a"]
+margin_left = -122.0
+margin_top = -107.0
+margin_right = -68.0
+margin_bottom = -88.0
+color = Color( 0.109804, 0.109804, 0.109804, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bar1" type="ColorRect" parent="a/Jetpack"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 52.0
+margin_bottom = 17.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StoneText" type="Label" parent="a"]
+margin_left = -121.248
+margin_top = -85.815
+margin_right = -2.24757
+margin_bottom = -71.815
+rect_scale = Vector2( 0.4, 0.4 )
+text = "Stone: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="a/Button" to="a/Button" method="_on_Button_pressed"]

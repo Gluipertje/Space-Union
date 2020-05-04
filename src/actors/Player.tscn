@@ -3,8 +3,8 @@
 [ext_resource path="res://src/actors/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://src/actors/Animations/playerIdle.tres" type="Texture" id=2]
 [ext_resource path="res://assets/2DLight.png" type="Texture" id=3]
-[ext_resource path="res://src/gamelogic/GUI/SaveButton.gd" type="Script" id=5]
-[ext_resource path="res://src/gamelogic/GUI/JetpackBar.gd" type="Script" id=10]
+[ext_resource path="res://src/gamelogic/GUI/SaveButton.gd" type="Script" id=4]
+[ext_resource path="res://src/gamelogic/GUI/JetpackBar.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.94368
@@ -27,62 +27,63 @@ offset = Vector2( 0, -39.049 )
 current = true
 zoom = Vector2( 0.2, 0.2 )
 
-[node name="a" type="ViewportContainer" parent="Camera2D"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="a" type="Control" parent="Camera2D"]
+margin_left = -118.963
+margin_top = -97.4438
+margin_right = -74.9625
+margin_bottom = -83.4438
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="Camera2D/a"]
 visible = false
-margin_left = -311.0
-margin_top = 153.0
-margin_right = -207.0
-margin_bottom = 173.0
+margin_right = 83.0
+margin_bottom = 20.0
 text = "Save World"
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="FPSText" type="Label" parent="Camera2D/a"]
-margin_left = 101.809
-margin_top = -108.088
-margin_right = 127.809
-margin_bottom = -94.0877
-rect_scale = Vector2( 0.2, 0.2 )
+margin_left = 60.777
+margin_top = -9.71528
+margin_right = 104.777
+margin_bottom = 4.28472
 text = "FPS:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Jetpack" type="ColorRect" parent="Camera2D/a"]
-margin_left = -122.0
-margin_top = -107.0
-margin_right = -68.0
-margin_bottom = -88.0
+margin_left = -1.58156
+margin_top = -7.22998
+margin_right = 53.4184
+margin_bottom = 11.77
+size_flags_horizontal = 0
+size_flags_vertical = 0
 color = Color( 0.109804, 0.109804, 0.109804, 1 )
-script = ExtResource( 10 )
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Bar1" type="ColorRect" parent="Camera2D/a/Jetpack"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 52.0
-margin_bottom = 17.0
+margin_left = 3.37905
+margin_top = 2.17065
+margin_right = 53.3791
+margin_bottom = 17.1707
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="StoneText" type="Label" parent="Camera2D/a"]
-margin_left = -121.248
-margin_top = -85.815
-margin_right = -2.24757
-margin_bottom = -71.815
-rect_scale = Vector2( 0.4, 0.4 )
+margin_left = -0.225937
+margin_top = 30.9533
+margin_right = 43.7741
+margin_bottom = 44.9533
 text = "Stone: "
 __meta__ = {
 "_edit_use_anchors_": false
@@ -100,5 +101,4 @@ texture = ExtResource( 3 )
 texture_scale = 0.4
 color = Color( 0.945098, 0.870588, 0.552941, 1 )
 energy = 0.5
-[connection signal="player_stats_changed" from="." to="Camera2D/a/Jetpack" method="_on_Player_player_stats_changed"]
 [connection signal="pressed" from="Camera2D/a/Button" to="Camera2D/a/Button" method="_on_Button_pressed"]
