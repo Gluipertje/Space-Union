@@ -8,8 +8,8 @@ var _playerPos
 var _jumpCount = 0 # This portion declares all 'private' variables which cant be accessed by other scripts
 
 onready var camera = get_node("Camera2D")
-onready var FPSText = get_node("Camera2D/a/FPSText")
-onready var StoneText = get_node("Camera2D/a/StoneText")
+onready var FPSText = get_node("CanvasLayer/a/FPSText")
+onready var StoneText = get_node("CanvasLayer/a/StoneText")
 #onready var jetpackParticle = get_node( "Particles2D") # This portion gets some other nodes which are attached to the player
  
 var normalJumpStrength = 180

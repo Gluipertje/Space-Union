@@ -2,6 +2,7 @@ extends TileMap
 
 export var tileSet: =  'res://src/tileset2.tres'
 onready var seedRaw = global.rawSeed
+onready var camera = get_node('../Player/Camera2D')
 
 func _ready() -> void:
 	generate(seedRaw)
@@ -80,15 +81,15 @@ func genUnderground(prevPos, curPos, rand, startGen):
 func setCameraLimit(startGen, endGen):
 	global._realWorldSize = map_to_world(Vector2(endGen, 0))
 	global._realStartPos = map_to_world(Vector2(startGen, 0))
-	$Player/Camera2D.limit_left = global._realStartPos.x + 32
-	$Player/Camera2D.limit_right = global._realWorldSize.x - 32
-	$Player/Camera2D.limit_top = -5000
-	$Player/Camera2D.limit_bottom = 5000
+	camera.limit_left = global._realStartPos.x + 32
+	camera.limit_right = global._realWorldSize.x - 32
+	camera.limit_top = -5000
+	camera.limit_bottom = 5000
 	
 func spawnPlayer(prevPos, curPos):
 	var scene = load("res://src/actors/Player.tscn")
 	var player = scene.instance()
 	#var player = get_node("../Player")
 	#var gui = get_node("../Player/CanvasLayer")
-	add_child(player)
+	#add_child(player)
 	player.set_position(Vector2(curPos * 16, prevPos * 16 - 32))
