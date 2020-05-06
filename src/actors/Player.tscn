@@ -55,6 +55,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/a"]
+margin_left = 28.0
+margin_top = 27.0
+margin_right = 246.0
+margin_bottom = 139.0
+color = Color( 0.109804, 0.109804, 0.109804, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Button" type="Button" parent="CanvasLayer/a"]
 visible = false
 margin_right = 83.0
@@ -66,10 +76,10 @@ __meta__ = {
 }
 
 [node name="FPSText" type="Label" parent="CanvasLayer/a"]
-margin_left = 38.2352
-margin_top = 97.5139
-margin_right = 82.2352
-margin_bottom = 111.514
+margin_left = 36.9176
+margin_top = 98.3045
+margin_right = 80.9176
+margin_bottom = 112.305
 text = "FPS:"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -99,10 +109,10 @@ __meta__ = {
 }
 
 [node name="StoneText" type="Label" parent="CanvasLayer/a"]
-margin_left = 37.6719
-margin_top = 113.478
-margin_right = 81.672
-margin_bottom = 127.478
+margin_left = 37.1449
+margin_top = 119.275
+margin_right = 81.145
+margin_bottom = 133.275
 text = "Stone: "
 __meta__ = {
 "_edit_use_anchors_": false

@@ -9,7 +9,6 @@ func _ready() -> void:
 func _on_Player_player_stats_changed(var player):
 	$Bar1.rect_size.x = sizex * player.JPFuel / player.maxJPFuel
 	$Bar1.color = Color(1, 1, 1, 1)
-	print('bruhh')
 	if !player.canJump or !player.canSprint:
 		$Bar1.color = Color(1, 0, 0, 1)
 	
