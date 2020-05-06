@@ -17,7 +17,7 @@ func generate(seedRaw):
 	genTerrain(startGen, endGen)
 	setCameraLimit(startGen, endGen)
 	spawnPlayer()
-	setupBg()
+	#setupBg()
 	
 
 func genTerrain(startGen, endGen):

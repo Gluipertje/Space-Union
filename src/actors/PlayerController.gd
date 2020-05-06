@@ -110,7 +110,8 @@ func move(_velocity, _direction):
 func checkWorldEnd():
 	_playerPos = get_position()
 	if _playerPos.x > global._realWorldSize.x:
-		set_position(Vector2(global.coordinateStart.x, global.coordinateStart.y))
+		set_position(Vector2(global.coordinateStart.x + 32, global.terrainArray[0] - 17))
+		print(global.terrainArray[-1])
 	elif _playerPos.x < global.coordinateStart.x:
-		print(Vector2(global.coordinateEnd.x - 1, global.coordinateEnd.y))
-		set_position(Vector2(global.coordinateEnd.x, global.coordinateEnd.y - 32))
+		set_position(Vector2(global.coordinateEnd.x - 32, global.terrainArray[-1] - 17))
+		
