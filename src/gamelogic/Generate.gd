@@ -17,6 +17,8 @@ func generate(seedRaw):
 	setCameraLimit(startGen, endGen)
 
 func genTerrain(startGen, endGen):
+	var noise = OpenSimplexNoise.new()
+	noise.set_seed(seedRaw)
 	var rand
 	var prevRand
 	var prevPos = startGen + 1
@@ -39,29 +41,48 @@ func genTerrain(startGen, endGen):
 			
 		if randGrass == 4:
 			spawnRock = true
-			
-		if rand == 5 and curPos > startGen + 3: # If the rand returns a 5 then the terrain will go down
-			set_cell(startGen + curPos, prevPos + 1, 5)
-			set_cell(startGen + curPos, prevPos, 6)
-			prevPos = prevPos + 1
-			prevRand = rand
-			genUnderground(prevPos, curPos, rand, startGen) # This makes the dirt under the grass
-			set_cell(startGen + curPos, prevPos - 2, 11) # Creates grass deco
-			global.terrainArray.append(map_to_world(Vector2(0, prevPos - 1)).y) # Adds this tile to the global terrainArray
-		elif rand == 0 and curPos < endGen - 3: # If the rand returns a 0 then the terrain will go up
-			set_cell(startGen + curPos, prevPos - 1, 1)
-			prevPos = prevPos - 1
-			prevRand = rand
-			genUnderground(prevPos, curPos, rand, startGen)
-			set_cell(startGen + curPos, prevPos + 1, 2)
-			set_cell(startGen + curPos, prevPos - 1, 10)
-			global.terrainArray.append(map_to_world(Vector2(0, prevPos + 1)).y)
+		
+		
+		var blockY = noise.get_noise_1d(curPos) * 200
+		blockY = int(blockY)
+		print(blockY)
+		set_cell(startGen + curPos, blockY, 0)
+		genUnderground(blockY, curPos, rand, startGen)
+		global.terrainArray.append(blockY * 16)
+		if global.terrainArray[curPos] < global.terrainArray[curPos - 1]: #Terrain goes up
+			set_cell(startGen + curPos, blockY, 1)
+			set_cell(startGen + curPos, global.terrainArray[curPos - 1], 2)
+			set_cell(startGen + curPos, blockY - 1, 10)
+		elif global.terrainArray[curPos] > global.terrainArray[curPos - 1]: #Terrain goes down
+			set_cell(startGen + curPos - 1, blockY - 1, 6)
+			set_cell(startGen + curPos - 1, blockY, 5)
+			set_cell(startGen + curPos - 1, blockY - 2, 11)
+			set_cell(startGen + curPos, blockY - 1, grassDeco)
 		else:
-			set_cell(startGen + curPos, prevPos, 0)
-			prevRand = rand
-			genUnderground(prevPos, curPos, rand, startGen)
-			set_cell(startGen + curPos, prevPos - 1, grassDeco)
-			global.terrainArray.append(map_to_world(Vector2(0, prevPos)).y)
+			set_cell(startGen + curPos, blockY - 1, grassDeco)
+		
+#		if rand == 5 and curPos > startGen + 3: # If the rand returns a 5 then the terrain will go down
+#			set_cell(startGen + curPos, prevPos + 1, 5)
+#			set_cell(startGen + curPos, prevPos, 6)
+#			prevPos = prevPos + 1
+#			prevRand = rand
+#			genUnderground(prevPos, curPos, rand, startGen) # This makes the dirt under the grass
+#			set_cell(startGen + curPos, prevPos - 2, 11) # Creates grass deco
+#			global.terrainArray.append(map_to_world(Vector2(0, prevPos - 1)).y) # Adds this tile to the global terrainArray
+#		elif rand == 0 and curPos < endGen - 3: # If the rand returns a 0 then the terrain will go up
+#			set_cell(startGen + curPos, prevPos - 1, 1)
+#			prevPos = prevPos - 1
+#			prevRand = rand
+#			genUnderground(prevPos, curPos, rand, startGen)
+#			set_cell(startGen + curPos, prevPos + 1, 2)
+#			set_cell(startGen + curPos, prevPos - 1, 10)
+#			global.terrainArray.append(map_to_world(Vector2(0, prevPos + 1)).y)
+#		else:
+#			set_cell(startGen + curPos, prevPos, 0)
+#			prevRand = rand
+#			genUnderground(prevPos, curPos, rand, startGen)
+#			set_cell(startGen + curPos, prevPos - 1, grassDeco)
+#			global.terrainArray.append(map_to_world(Vector2(0, prevPos)).y)
 	
 		if curPos == startGen + 32:
 			spawnPlayer(prevPos, curPos)

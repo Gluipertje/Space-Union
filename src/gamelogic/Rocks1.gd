@@ -20,7 +20,7 @@ func GenRocks1():
 		var rand = randi() % 10
 		if rand == 5:
 			if rockC == rocksS:
-				if terrain[x] - terrain[x + 1] != 16 and terrain[x] - terrain[x - 1] != 16:
+				if terrain[x] - terrain[x + 1] != 16 and terrain[x] - terrain[x - 1] != -16:
 					var Rock = rocksS[randTS]
 					var Rockin = Rock.instance()
 					Rockin.position = Vector2(x * 16, terrain[x] - 24)
