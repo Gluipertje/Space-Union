@@ -10,7 +10,7 @@ func _on_Button2_pressed() -> void:
 		var randSeed = getRandSeed()
 		global.rawSeed = randSeed
 	seed(global.rawSeed)
-	var rand = randi() % 4
+	var rand = 100
 	print(rand)
 	if rand == 100:
 		get_tree().change_scene(newWorldAl1)

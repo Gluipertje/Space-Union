@@ -35,7 +35,7 @@ func genTerrain(startGen, endGen):
 		else:
 			grassDeco = 8
 		
-		var blockY = noise.get_noise_1d(curPos) * 60 # Creates a new noise map
+		var blockY = noise.get_noise_1d(curPos) * 5 # Creates a new noise map
 		blockY = int(blockY) # Rounds the float to an int
 		set_cell(startGen + curPos, blockY, 0)
 		genUnderground(blockY, curPos, rand, startGen)

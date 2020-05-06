@@ -11,7 +11,7 @@ __meta__ = {
 }
 
 [node name="Rock1" type="Sprite" parent="."]
-position = Vector2( 704.575, -1402.87 )
+position = Vector2( 709.737, -1402.87 )
 scale = Vector2( 135.255, 135.255 )
 texture = ExtResource( 2 )
 

@@ -41,6 +41,7 @@ color = Color( 0.945098, 0.870588, 0.552941, 1 )
 energy = 0.5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="a" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
@@ -49,6 +50,7 @@ margin_left = 0.277374
 margin_right = 0.277344
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
