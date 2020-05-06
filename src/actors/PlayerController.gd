@@ -16,8 +16,8 @@ var normalJumpStrength = 180
 var jetJumpStrenth = 150
 var JPFuel = 500.0
 var maxJPFuel = 500.0
-var JPDepletion = 10.0
-var JPSprintDepletion = 5.0
+var JPDepletion = 0
+var JPSprintDepletion = 0
 var JPRegeneration = 1.0 # This portion declares some variables specific to only the player such as jpfuel, etc.
 
 signal player_stats_changed # Creates a signal so when the player stats change, the GUI elements get updated
@@ -48,6 +48,7 @@ func move(_velocity, _direction):
 	
 	if is_on_floor():
 		_jumpCount = 0
+		_newvelocity.y = 0
 	
 	if !is_on_floor() and _velocity.y < maxfallvelocity:
 		_newvelocity.y += gravity * get_physics_process_delta_time()
