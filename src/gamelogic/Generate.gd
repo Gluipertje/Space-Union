@@ -13,9 +13,12 @@ func generate(seedRaw):
 	set_tileset(load(tileSet))
 	set_cell_size(Vector2(16, 16))
 	var startGen = 0
-	var endGen = 1000
+	var endGen = 200
 	genTerrain(startGen, endGen)
 	setCameraLimit(startGen, endGen)
+	spawnPlayer()
+	setupBg()
+	
 
 func genTerrain(startGen, endGen):
 	var noise = OpenSimplexNoise.new()
@@ -47,10 +50,7 @@ func genTerrain(startGen, endGen):
 			set_cell(startGen + curPos - 1,  global.terrainArray[curPos - 1] / 16 - 1, 11)
 			set_cell(startGen + curPos, blockY - 1, grassDeco)
 		else:
-			set_cell(startGen + curPos, blockY - 1, grassDeco)
-	
-		if curPos == startGen + 32:
-			spawnPlayer(blockY, curPos)
+			set_cell(startGen + curPos, blockY - 1, grassDeco)	
 			
 		if curPos == 0:
 			global.coordinateStart = Vector2(curPos, prevPos)
@@ -72,10 +72,19 @@ func setCameraLimit(startGen, endGen):
 	camera.limit_top = -5000
 	camera.limit_bottom = 5000
 	
-func spawnPlayer(prevPos, curPos):
-	var scene = load("res://src/actors/Player.tscn")
-	#var player = scene.instance()
-	#var player = get_node("../Player")
-	#var gui = get_node("../Player/CanvasLayer")
-	#add_child(player)
-	player.set_position(Vector2(0, 1000))
+func spawnPlayer():
+	player.set_position(Vector2(100 * 16, global.terrainArray[100] - 16))
+	
+func setupBg():
+	var sortTerrainArray = []
+	var bruh = []
+	bruh = global.terrainArray
+	sortTerrainArray = bruh
+	sortTerrainArray.sort()
+	global.minYvalue = sortTerrainArray[-1]
+	print(global.minYvalue)
+	print(global.terrainArray)
+	print(bruh)
+	print(sortTerrainArray)
+	var pl1 = get_node('../ParallaxBackground/ParallaxLayer2')
+	pl1.set_position(Vector2(0, global.minYvalue))

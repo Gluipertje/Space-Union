@@ -63,7 +63,7 @@ region_rect = Rect2( 0, 0, 1280, 1280.01 )
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 z_index = 1
-motion_scale = Vector2( 0.4, 0 )
+motion_scale = Vector2( 0.4, 0.5 )
 motion_mirroring = Vector2( 640, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
