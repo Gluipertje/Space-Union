@@ -6,8 +6,15 @@ onready var camera = get_node('../Player/Camera2D')
 onready var player = get_node('../Player')
 
 func _ready() -> void:
+	clearDeco()
 	generate(seedRaw)
-	
+
+func clearDeco():
+	var children = get_tree().get_root().get_children()
+	for i in range(children.size()):
+		if 'Rock_' in children[i].get_name() or 'Tree_' in children[i].get_name():
+			children[i].queue_free()
+
 func generate(seedRaw):
 	seed(seedRaw)
 	set_tileset(load(tileSet))

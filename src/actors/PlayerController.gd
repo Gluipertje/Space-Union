@@ -34,6 +34,8 @@ func _physics_process(delta):
 	StoneText.text = ('Stone: ' + str(global.playerInventoryStone))
 	if Input.is_action_just_pressed("posDebug"):
 		print(get_position())
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().change_scene('res://src/scenes/chooseworld.tscn')
 	
 func move(_velocity, _direction):
 	var moveRight = Input.is_action_pressed("move_right")

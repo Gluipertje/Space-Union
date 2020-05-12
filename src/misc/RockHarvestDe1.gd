@@ -22,7 +22,8 @@ func _input_event(viewport, event, shape_idx):
 			add_child(particles_inst)
 			print("bruh")
 			global.playerInventoryStone += randi() % 6
-			$Sprite.queue_free()
+			if is_instance_valid($Sprite):
+				$Sprite.queue_free()
 
 		if health > 0:
 			health -= 1
