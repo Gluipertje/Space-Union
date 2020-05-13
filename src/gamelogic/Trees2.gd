@@ -12,7 +12,7 @@ func _ready() -> void:
 func GenTrees1():
 	for x in range(0, terrain.size() - 16, 3):
 		var randT = rand_range(0, trees.size()) 
-		var rand = 1
+		var rand = randi() % 5
 		if rand == 1:
 			if terrain[x -1] - terrain[x] == 0 and terrain[x] - terrain[x + 1] == 0:
 				var Tre = trees[randT]

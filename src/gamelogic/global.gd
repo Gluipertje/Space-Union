@@ -9,5 +9,7 @@ var terrainArray = []
 var playerInventoryStone = 0
 var minYvalue
 var biomes = ["Alien1", "Desert1"]
+var worlds = []
+var wantedWorld
 
 

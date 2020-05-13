@@ -6,10 +6,12 @@ onready var camera = get_node('../Player/Camera2D')
 onready var player = get_node('../Player')
 
 func _ready() -> void:
-	clearDeco()
+	cleanUp()
 	generate(seedRaw)
 
-func clearDeco():
+func cleanUp():
+	clear()
+	global.terrainArray.clear()
 	var children = get_tree().get_root().get_children()
 	for i in range(children.size()):
 		if 'Rock_' in children[i].get_name() or 'Tree_' in children[i].get_name():
@@ -29,7 +31,7 @@ func generate(seedRaw):
 
 func genTerrain(startGen, endGen):
 	var noise = OpenSimplexNoise.new()
-	noise.set_seed(seedRaw)
+	noise.set_seed(int(global.wantedWorld[2]))
 	var rand
 	var prevRand
 	var prevPos = startGen + 1
@@ -42,7 +44,7 @@ func genTerrain(startGen, endGen):
 		else:
 			grassDeco = 8
 		
-		var blockY = noise.get_noise_1d(curPos) * 5 # Creates a new noise map
+		var blockY = noise.get_noise_1d(curPos) * 20 # Creates a new noise map
 		blockY = int(blockY) # Rounds the float to an int
 		set_cell(startGen + curPos, blockY, 0)
 		genUnderground(blockY, curPos, rand, startGen)

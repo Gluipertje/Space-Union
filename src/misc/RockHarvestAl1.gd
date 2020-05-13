@@ -18,6 +18,8 @@ func _input_event(viewport, event, shape_idx):
 		print("Clicked")
 		var particles_inst = particles.instance()
 		if isAlive:
+			particles_inst.set_position(get_viewport().get_mouse_position())
+			print(get_viewport().get_mouse_position())
 			add_child(particles_inst)
 				
 		if health == 0 and isAlive:
