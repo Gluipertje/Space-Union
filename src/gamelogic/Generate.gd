@@ -25,17 +25,15 @@ func generate(seedRaw):
 	var endGen = 200
 	genTerrain(startGen, endGen)
 	setCameraLimit(startGen, endGen)
-	spawnPlayer()
-	#setupBg()
+	setupBg()
+	spawnPlayer()	
 	
 
 func genTerrain(startGen, endGen):
 	var noise = OpenSimplexNoise.new()
 	noise.set_seed(int(global.wantedWorld[2]))
 	var rand
-	var prevRand
 	var prevPos = startGen + 1
-	var spawnRock
 	for curPos in range(startGen, endGen, 1): #Generates random slices according to the worldsize		
 		var randGrass = randi() % 6 # Generates random grass texture
 		var grassDeco
@@ -44,7 +42,7 @@ func genTerrain(startGen, endGen):
 		else:
 			grassDeco = 8
 		
-		var blockY = noise.get_noise_1d(curPos) * 20 # Creates a new noise map
+		var blockY = noise.get_noise_1d(curPos) * global.wantedWorld[3] # Creates a new noise map
 		blockY = int(blockY) # Rounds the float to an int
 		set_cell(startGen + curPos, blockY, 0)
 		genUnderground(blockY, curPos, rand, startGen)
@@ -85,15 +83,11 @@ func spawnPlayer():
 	player.set_position(Vector2(100 * 16, global.terrainArray[100] - 16))
 	
 func setupBg():
-	var sortTerrainArray = []
-	var bruh = []
-	bruh = global.terrainArray
-	sortTerrainArray = bruh
-	sortTerrainArray.sort()
-	global.minYvalue = sortTerrainArray[-1]
+	global.minYvalue = global.terrainArray.max()
 	print(global.minYvalue)
 	print(global.terrainArray)
-	print(bruh)
-	print(sortTerrainArray)
-	var pl1 = get_node('../ParallaxBackground/ParallaxLayer2')
-	pl1.set_position(Vector2(0, global.minYvalue))
+	var pl1 = get_node('../ParallaxBackground/ParallaxLayer2/Sprite')
+	var pl2 = get_node('../ParallaxBackground/ParallaxLayer3/Sprite')
+	pl1.set_position(Vector2(0, global.minYvalue - 64 + 32))
+	if has_node('../ParallaxBackground/ParallaxLayer3/Sprite'):
+		pl2.set_position(Vector2(0, global.minYvalue - 20 - 48))

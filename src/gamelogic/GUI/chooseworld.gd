@@ -21,12 +21,14 @@ func _ready() -> void:
 		
 		var worldSeed = str(randi() % 500) + str(randi() % 500) + str(randi() % 500)
 		var randBiome = randi() % global.biomes.size()
-		global.worlds.append([words[randName], global.biomes[randBiome], worldSeed])
+		var height = randi() % 100
+		global.worlds.append([words[randName], global.biomes[randBiome], worldSeed, height])
 		words.erase(words[randName])
 	
 
 func _on_Button_id_pressed(id):
 	global.wantedWorld = global.worlds[id]
+	print('Switching to world ' + str(global.worlds[id]))
 	var newScene = "res://src/scenes/" + 'world' + global.worlds[id][1] + '.tscn'
 	get_tree().change_scene(newScene)
 	

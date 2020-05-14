@@ -18,6 +18,6 @@ func _on_LineEdit_text_entered(new_text: String):
 
 func getRandSeed():
 	randomize()
-	var rawSeed = randi() % 100
+	var rawSeed = int(str(randi() % 500) + str(randi() % 500) + str(randi() % 500))
 	print(rawSeed)
 	return rawSeed

@@ -30,6 +30,7 @@ func _physics_process(delta):
 	_velocity = move(_velocity, _direction)
 	_velocity = move_and_slide(_velocity, Vector2.UP) # Applies the velocity every frame
 	checkWorldEnd()
+	doZoom()
 	FPSText.text = ('FPS: ' + str(Engine.get_frames_per_second())) # Prints FPS
 	StoneText.text = ('Stone: ' + str(global.playerInventoryStone))
 	if Input.is_action_just_pressed("posDebug"):
@@ -113,7 +114,16 @@ func checkWorldEnd():
 	_playerPos = get_position()
 	if _playerPos.x > global._realWorldSize.x:
 		set_position(Vector2(global.coordinateStart.x + 32, global.terrainArray[0] - 17))
-		print(global.terrainArray[-1])
+		camera.set_zoom(Vector2(0.2, 0.2))
 	elif _playerPos.x < global.coordinateStart.x:
 		set_position(Vector2(global.coordinateEnd.x - 32, global.terrainArray[-1] - 17))
+		camera.set_zoom(Vector2(0.2, 0.2))
 		
+func doZoom():
+	var relHeight = global.minYvalue - get_position().y
+	print(relHeight / 10)
+	print(camera.get_zoom())
+	if relHeight > 128 and 0.2 * (relHeight /500) >= 0.2:
+		camera.set_zoom(Vector2(0.2 * (relHeight /500), 0.2 * (relHeight / 500)))
+	elif camera.get_zoom().x < 0.2:
+		camera.set_zoom(Vector2(0.2, 0.2))

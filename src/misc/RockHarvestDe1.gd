@@ -16,12 +16,9 @@ func _input_event(viewport, event, shape_idx):
 	if event.is_action_pressed('lclick'):
 		print("Clicked")
 		var particles_inst = particles.instance()
-		particles_inst.set_position(get_viewport().get_mouse_position())
-		p(get_viewport().get_mouse_position())
 		add_child(particles_inst)
 
 		if health == 0:
-			particles_inst.set_position(get_viewport().get_mouse_position())
 			add_child(particles_inst)
 			print("bruh")
 			global.playerInventoryStone += randi() % 6

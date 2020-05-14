@@ -24,7 +24,7 @@ func GenRocks1():
 				if terrain[x] - terrain[x + 1] != 16 and terrain[x] - terrain[x - 1] != 16:
 					var Rock = rocksS[randTS]
 					var Rockin = Rock.instance()
-					Rockin.position = Vector2(x * 16, terrain[x] - 24)
+					Rockin.position = Vector2(x * 16, terrain[x] - 4)
 					Rockin.set_name('Rock_' + str(x))
 					get_tree().get_root().add_child(Rockin, true)
 					#print('Rock added at ' + str(x * 16) + ' ' + str(terrain[x] * 16 - 24) + ' On round ' + str(x))
@@ -32,7 +32,7 @@ func GenRocks1():
 				if terrain[x -1] - terrain[x] == 0 and terrain[x] - terrain[x + 1] == 0:
 					var Rock = rocksM[randTM]
 					var Rockin = Rock.instance()
-					Rockin.position = Vector2(x * 16, terrain[x] - 24)
+					Rockin.position = Vector2(x * 16, terrain[x] - 16)
 					Rockin.set_name('Rock_' + str(x))
 					get_tree().get_root().add_child(Rockin, true)
 					#print('Rock added at ' + str(x * 16) + ' ' + str(terrain[x] * 16 - 24) + ' On round ' + str(x))
