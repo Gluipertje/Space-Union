@@ -1,3 +1,5 @@
+#This script is a way to communicate various important variables between scripts, it is therefore auto-loaded
+
 extends Node
 
 var rawSeed
