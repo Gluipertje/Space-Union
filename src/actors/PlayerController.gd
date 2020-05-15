@@ -121,8 +121,6 @@ func checkWorldEnd():
 		
 func doZoom():
 	var relHeight = global.minYvalue - get_position().y
-	print(relHeight / 10)
-	print(camera.get_zoom())
 	if relHeight > 128 and 0.2 * (relHeight /500) >= 0.2:
 		camera.set_zoom(Vector2(0.2 * (relHeight /500), 0.2 * (relHeight / 500)))
 	elif camera.get_zoom().x < 0.2:

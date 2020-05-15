@@ -44,20 +44,38 @@ func genTerrain(startGen, endGen):
 		
 		var blockY = noise.get_noise_1d(curPos) * global.wantedWorld[3] # Creates a new noise map
 		blockY = int(blockY) # Rounds the float to an int
-		set_cell(startGen + curPos, blockY, 0)
-		genUnderground(blockY, curPos, rand, startGen)
-		global.terrainArray.append(blockY * 16)
-		if global.terrainArray[curPos] < global.terrainArray[curPos - 1]: #Terrain goes up
-			set_cell(startGen + curPos, blockY, 1)
-			set_cell(startGen + curPos, global.terrainArray[curPos - 1] / 16, 2)
-			set_cell(startGen + curPos, blockY - 1, 10)
-		elif global.terrainArray[curPos] > global.terrainArray[curPos - 1]: #Terrain goes down
-			set_cell(startGen + curPos - 1, blockY, 5)
-			set_cell(startGen + curPos - 1, global.terrainArray[curPos - 1] / 16, 6)
-			set_cell(startGen + curPos - 1,  global.terrainArray[curPos - 1] / 16 - 1, 11)
+		
+		if curPos > 10 and curPos < endGen - 10:
+			set_cell(startGen + curPos, blockY, 0)
+			genUnderground(blockY, curPos, rand, startGen)
+			global.terrainArray.append(blockY * 16)
+			if global.terrainArray[curPos] < global.terrainArray[curPos - 1]: #Terrain goes up
+				set_cell(startGen + curPos, blockY, 1)
+				set_cell(startGen + curPos, global.terrainArray[curPos - 1] / 16, 2)
+				set_cell(startGen + curPos, blockY - 1, 10)
+			elif global.terrainArray[curPos] > global.terrainArray[curPos - 1]: #Terrain goes down
+				set_cell(startGen + curPos - 1, blockY, 5)
+				set_cell(startGen + curPos - 1, global.terrainArray[curPos - 1] / 16, 6)
+				set_cell(startGen + curPos - 1,  global.terrainArray[curPos - 1] / 16 - 1, 11)
+				set_cell(startGen + curPos, blockY - 1, grassDeco)
+			else:
+				set_cell(startGen + curPos, blockY - 1, grassDeco)	
+		elif curPos <= 10:
+			blockY = noise.get_noise_1d(11) * global.wantedWorld[3]
+			blockY = int(blockY)
+			print(blockY)
+			global.terrainArray.append(blockY * 16)
+			set_cell(startGen + curPos, blockY, 0)
+			genUnderground(blockY, curPos, rand, startGen)
 			set_cell(startGen + curPos, blockY - 1, grassDeco)
-		else:
-			set_cell(startGen + curPos, blockY - 1, grassDeco)	
+		elif curPos >= endGen - 10:
+			blockY = noise.get_noise_1d(endGen - 11) * global.wantedWorld[3]
+			blockY = int(blockY)
+			print(blockY)
+			global.terrainArray.append(blockY * 16)
+			set_cell(startGen + curPos, blockY, 0)
+			genUnderground(blockY, curPos, rand, startGen)
+			set_cell(startGen + curPos, blockY - 1, grassDeco)
 			
 		if curPos == 0:
 			global.coordinateStart = Vector2(curPos, prevPos)
@@ -84,8 +102,6 @@ func spawnPlayer():
 	
 func setupBg():
 	global.minYvalue = global.terrainArray.max()
-	print(global.minYvalue)
-	print(global.terrainArray)
 	var pl1 = get_node('../ParallaxBackground/ParallaxLayer2/Sprite')
 	var pl2 = get_node('../ParallaxBackground/ParallaxLayer3/Sprite')
 	pl1.set_position(Vector2(0, global.minYvalue - 64 + 32))
