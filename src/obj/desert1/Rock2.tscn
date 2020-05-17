@@ -4,12 +4,15 @@
 [ext_resource path="res://src/misc/RockHarvestDe1.gd" type="Script" id=2]
 
 [node name="Area2D" type="Area2D"]
+position = Vector2( 0, -16 )
 z_index = -9
 collision_layer = 4
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -16 )
 texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, -16 )
 polygon = PoolVector2Array( -12.1788, 7.58281, -10.6908, 26.792, -15.5607, 31.9325, 14.2725, 31.9628, 9.16929, 26.1637, 9.28527, -0.860144, 9.98117, -14.778, 10.4123, -28.2653, -9.0675, -19.8782, -11.9083, -8.78559 )

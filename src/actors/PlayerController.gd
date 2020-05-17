@@ -10,6 +10,7 @@ var _jumpCount = 0 # This portion declares all 'private' variables which cant be
 onready var camera = get_node("Camera2D")
 onready var FPSText = get_node("CanvasLayer/a/FPSText")
 onready var StoneText = get_node("CanvasLayer/a/StoneText")
+onready var Credits = get_node("CanvasLayer/a/Credits")
 #onready var jetpackParticle = get_node( "Particles2D") # This portion gets some other nodes which are attached to the player
  
 var normalJumpStrength = 180
@@ -32,11 +33,13 @@ func _physics_process(delta):
 	checkWorldEnd()
 	doZoom()
 	FPSText.text = ('FPS: ' + str(Engine.get_frames_per_second())) # Prints FPS
-	StoneText.text = ('Stone: ' + str(global.playerInventoryStone))
+	StoneText.text = ('Stone: ' + str(PlayerStats.playerInventoryStone))
+	Credits.text = ('Credits: ' + str(PlayerStats.playerCredits))
 	if Input.is_action_just_pressed("posDebug"):
 		print(get_position())
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().change_scene('res://src/scenes/chooseworld.tscn')
+	global.playerPos = get_position()
 	
 func move(_velocity, _direction):
 	var moveRight = Input.is_action_pressed("move_right")
@@ -121,7 +124,7 @@ func checkWorldEnd():
 		
 func doZoom():
 	var relHeight = global.minYvalue - get_position().y
-	if relHeight > 128 and 0.2 * (relHeight /500) >= 0.2:
+	if relHeight > 128 and 0.2 * (relHeight /500) >= 0.2 and 0.2 * (relHeight /500) <= 0.5:
 		camera.set_zoom(Vector2(0.2 * (relHeight /500), 0.2 * (relHeight / 500)))
 	elif camera.get_zoom().x < 0.2:
 		camera.set_zoom(Vector2(0.2, 0.2))

@@ -30,6 +30,7 @@ config/icon="res://dogemapart.png"
 [autoload]
 
 global="*res://src/gamelogic/global.gd"
+PlayerStats="*res://src/gamelogic/playerStats.gd"
 
 [display]
 

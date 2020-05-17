@@ -61,7 +61,7 @@ __meta__ = {
 margin_left = 28.0
 margin_top = 27.0
 margin_right = 246.0
-margin_bottom = 139.0
+margin_bottom = 167.0
 color = Color( 0.109804, 0.109804, 0.109804, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -116,6 +116,16 @@ margin_top = 119.275
 margin_right = 81.145
 margin_bottom = 133.275
 text = "Stone: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Label" parent="CanvasLayer/a"]
+margin_left = 37.1449
+margin_top = 140.835
+margin_right = 81.145
+margin_bottom = 154.835
+text = "Credits:"
 __meta__ = {
 "_edit_use_anchors_": false
 }

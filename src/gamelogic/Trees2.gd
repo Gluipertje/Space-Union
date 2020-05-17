@@ -12,12 +12,11 @@ func _ready() -> void:
 func GenTrees1():
 	for x in range(0, terrain.size() - 16, 3):
 		var randT = rand_range(0, trees.size()) 
-		var rand = randi() % 5
+		var rand = randi() % 3
 		if rand == 1:
-			if terrain[x -1] - terrain[x] == 0 and terrain[x] - terrain[x + 1] == 0:
+			if terrain[x] - terrain[x + 1] >= 0 and terrain[x] - terrain[x - 1] >= 0:
 				var Tre = trees[randT]
 				var Treein = Tre.instance()
 				Treein.position = Vector2(x * 16, terrain[x] - 16)
 				Treein.set_name('Tree_' + str(x))
 				get_tree().get_root().add_child(Treein, true)
-				#print('Tree added at ' + str(x * 16) + ' ' + str(terrain[x] * 16 - 24) + ' On round ' + str(x))

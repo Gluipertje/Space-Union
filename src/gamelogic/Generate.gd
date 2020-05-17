@@ -1,9 +1,11 @@
 extends TileMap
 
 export var tileSet: =  'res://src/tileset2.tres'
-onready var seedRaw = global.rawSeed
+onready var seedRaw = int(global.wantedWorld[2])
 onready var camera = get_node('../Player/Camera2D')
 onready var player = get_node('../Player')
+onready var bot = get_node('../Area2D')
+onready var botS = get_node('../Area2D/Sprite')
 
 func _ready() -> void:
 	cleanUp()
@@ -33,6 +35,7 @@ func genTerrain(startGen, endGen): # Generates the terrain
 	noise.set_seed(int(global.wantedWorld[2]))
 	var rand
 	var prevPos = startGen + 1
+	var botPos = int(rand_range(20, endGen - 20))
 	for curPos in range(startGen, endGen, 1): #Generates random slices according to the worldsize		
 		var randGrass = randi() % 6 
 		var grassDeco
@@ -78,7 +81,10 @@ func genTerrain(startGen, endGen): # Generates the terrain
 			genUnderground(blockY, curPos, rand, startGen)
 			set_cell(startGen + curPos, blockY - 1, grassDeco)
 		
-		
+		if curPos == botPos:
+			var randDir = randi() % 2
+			bot.set_position(Vector2(curPos * 16, global.terrainArray[curPos] - 16))
+			print('spawned bot at: ' + str(curPos * 16) + ', ' + str(global.terrainArray[curPos] - 24) + ', flipped is: ' + str(randDir))
 			
 		if curPos == 0: # Defines absolute world boundaries
 			global.coordinateStart = Vector2(curPos, prevPos)
@@ -107,6 +113,6 @@ func setupBg(): # Sets bg's to 'correct' position
 	global.minYvalue = global.terrainArray.max()
 	var pl1 = get_node('../ParallaxBackground/ParallaxLayer2/Sprite')
 	var pl2 = get_node('../ParallaxBackground/ParallaxLayer3/Sprite')
-	pl1.set_position(Vector2(0, global.minYvalue - 64 + 32))
+	pl1.set_position(Vector2(0, global.minYvalue - 64 + 40))
 	if has_node('../ParallaxBackground/ParallaxLayer3/Sprite'):
-		pl2.set_position(Vector2(0, global.minYvalue - 20 - 48))
+		pl2.set_position(Vector2(0, global.minYvalue - 20 - 32))

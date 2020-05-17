@@ -1,34 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/Deco/Alien1/Rock13.png" type="Texture" id=1]
 [ext_resource path="res://src/misc/RockHarvestAl1.gd" type="Script" id=2]
-[ext_resource path="res://assets/part12.png" type="Texture" id=3]
-[ext_resource path="res://src/obj/alien1/Rock.tres" type="Material" id=4]
-
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16.0278, 12.3879 )
 
 [node name="Area" type="Area2D"]
+position = Vector2( 4, 0 )
 z_index = -8
 collision_layer = 4
 collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 4, 0 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, 8 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.142403, 11.819 )
-shape = SubResource( 1 )
-
-[node name="Particles2D" type="Particles2D" parent="."]
-position = Vector2( 0, 16 )
-emitting = false
-amount = 16
-lifetime = 0.5
-one_shot = true
-explosiveness = 1.0
-process_material = ExtResource( 4 )
-texture = ExtResource( 3 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -11.0635, 23.114, 0.346107, 2.31901, 6.60299, -0.257355, 12.3078, 2.13499, 13.2279, 10.9682, 19.1168, 23.8501 )

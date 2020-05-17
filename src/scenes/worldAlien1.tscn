@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/gamelogic/WorldGen.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gamelogic/Rocks1.gd" type="Script" id=2]
 [ext_resource path="res://src/gamelogic/Trees1.gd" type="Script" id=3]
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/actors/bot.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Image" id=5]
 data = {
@@ -58,7 +59,7 @@ motion_scale = Vector2( 0.4, 0.4 )
 z_index = -20
 texture = SubResource( 2 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 12800, 12800 )
+region_rect = Rect2( 0, 0, 24800, 12800 )
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.4, 0.5 )
@@ -69,3 +70,5 @@ texture = SubResource( 4 )
 offset = Vector2( 0, -120 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 640, 360 )
+
+[node name="Area2D" parent="." instance=ExtResource( 5 )]
