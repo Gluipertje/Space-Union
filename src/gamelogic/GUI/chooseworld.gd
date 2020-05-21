@@ -14,12 +14,18 @@ func _ready() -> void:
 		var worldSeed = str(randi() % 500) + str(randi() % 500) + str(randi() % 500)
 		var randBiome = randi() % global.biomes.size()
 		var height = randi() % 100
+		var worldSize = (randi() % 500) + 200
+		var worldSizeName = ''
+		if worldSize > 500:
+			worldSizeName = 'Major'
+		elif worldSize < 400:
+			worldSizeName = 'Minor'
 		
 		var randWord = randi() % words.size()
 		var randLetter = randi() % letters.size()
 		var buttoni = button.instance()
 		
-		var name = str(height) + ' ' + words[randWord] + ' ' + global.biomes[randBiome][0]
+		var name = str(height) + ' ' + words[randWord] + ' ' + global.biomes[randBiome][0] + ' ' + worldSizeName
 		
 		buttoni.set_name("Button" + str(i))
 		buttoni.set_position(Vector2(40, yButton))
@@ -29,7 +35,7 @@ func _ready() -> void:
 		yButton += 60
 		
 		
-		global.worlds.append([name, global.biomes[randBiome], worldSeed, height])
+		global.worlds.append([name, global.biomes[randBiome], worldSeed, height, worldSize])
 		words.erase(words[randWord])
 	
 

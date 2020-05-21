@@ -24,7 +24,7 @@ func generate(seedRaw):
 	set_tileset(load(tileSet))
 	set_cell_size(Vector2(16, 16))
 	var startGen = 0
-	var endGen = 200
+	var endGen = int(global.wantedWorld[4])
 	genTerrain(startGen, endGen)
 	setCameraLimit(startGen, endGen)
 	setupBg()
@@ -95,8 +95,9 @@ func genTerrain(startGen, endGen): # Generates the terrain
 func genUnderground(prevPos, curPos, rand, startGen): # Generates tiles under the top of the terrain
 	for i in range(prevPos + 1, 300):
 					set_cell(startGen + curPos, i, 4)
-					if rand_range(0, 10) == 0:
-						set_cell(startGen + curPos, rand_range(0, 100), 3)		
+					if randi() % 50 == 25:
+						set_cell(startGen + curPos, int(rand_range(prevPos + 1, 300)) , 3)
+						print('set block variation at ' + str(startGen + curPos) + ', ' + str(rand_range(prevPos + 1, 300)))
 
 func setCameraLimit(startGen, endGen): # Defines where the camera should stop moving 
 	global._realWorldSize = map_to_world(Vector2(endGen, 0))
@@ -107,12 +108,21 @@ func setCameraLimit(startGen, endGen): # Defines where the camera should stop mo
 	camera.limit_bottom = 5000
 	
 func spawnPlayer(): # Teleports player to middel of the world
-	player.set_position(Vector2(100 * 16, global.terrainArray[100] - 16))
+	player.set_position(Vector2((int(global.wantedWorld[4]) / 2) * 16, global.terrainArray[int(global.wantedWorld[4]) / 2] - 16))
 	
 func setupBg(): # Sets bg's to 'correct' position
 	global.minYvalue = global.terrainArray.max()
-	var pl1 = get_node('../ParallaxBackground/ParallaxLayer2/Sprite')
-	var pl2 = get_node('../ParallaxBackground/ParallaxLayer3/Sprite')
-	pl1.set_position(Vector2(0, global.minYvalue - 64 + 40))
-	if has_node('../ParallaxBackground/ParallaxLayer3/Sprite'):
-		pl2.set_position(Vector2(0, global.minYvalue - 20 - 32))
+	global.maxYvalue = global.terrainArray.min()
+#	if global.wantedWorld[1] == "Desert1":
+#		var pl1 = get_node('../ParallaxBackground/ParallaxLayer2/Sprite')
+#		var pl2 = get_node('../ParallaxBackground/ParallaxLayer3/Sprite')
+#		pl1.set_position(Vector2(0, global.minYvalue - 64 + 40))
+#		pl2.set_position(Vector2(0, global.minYvalue - 64 + 40))
+	
+	if global.wantedWorld[1] == "Alien1":
+		var pl1 = get_node('../ParallaxBackground/ParallaxLayer2/Sprite')
+		var pl2 = get_node('../ParallaxBackground/ParallaxLayer3/Sprite')
+		var pl3 = get_node('../ParallaxBackground/ParallaxLayer4/Sprite')
+		pl1.set_position(Vector2(0, global.minYvalue  - 40))
+		pl2.set_position(Vector2(0, global.minYvalue  - 40))
+		pl3.set_position(Vector2(0, global.maxYvalue  - 40))
