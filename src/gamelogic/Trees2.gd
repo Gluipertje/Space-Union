@@ -17,6 +17,6 @@ func GenTrees1():
 			if terrain[x] - terrain[x + 1] >= 0 and terrain[x] - terrain[x - 1] >= 0:
 				var Tre = trees[randT]
 				var Treein = Tre.instance()
-				Treein.position = Vector2(x * 16, terrain[x] - 16)
+				Treein.position = Vector2(x * 16, terrain[x] - 24)
 				Treein.set_name('Tree_' + str(x))
 				get_tree().get_root().add_child(Treein, true)

@@ -10,9 +10,10 @@ var coordinateEnd: = Vector2(0,0)
 var terrainArray = []
 var minYvalue
 var maxYvalue
-var biomes = ["Alien1", "Desert1"]
+var biomes = ["Alien1", "Desert1", "Jungle1"]
 var worlds = []
 var wantedWorld
 var playerPos
+var isInShip
 
 

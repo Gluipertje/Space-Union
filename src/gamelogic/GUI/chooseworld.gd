@@ -1,6 +1,7 @@
 extends Control
 
 onready var button = preload("res://src/misc/Button.tscn")
+onready var planetAl = preload("res://src/obj/alien1/planetAl.tscn")
 
 var randWord1
 var words = ['Valkse', 'Merenu', 'Tharasa', 'Zeus', 'Kanrakyo', 'Cancri', 'Pegas', 'Galileo', 'Ursae Majoris', 'Draconis', 'Delphini', 'Andromedae']
@@ -23,16 +24,30 @@ func _ready() -> void:
 		
 		var randWord = randi() % words.size()
 		var randLetter = randi() % letters.size()
-		var buttoni = button.instance()
+		var planetAli = planetAl.instance()
+#		var buttoni = button.instance()
 		
 		var name = str(height) + ' ' + words[randWord] + ' ' + global.biomes[randBiome][0] + ' ' + worldSizeName
 		
-		buttoni.set_name("Button" + str(i))
-		buttoni.set_position(Vector2(40, yButton))
-		buttoni.set_text(name)
-		add_child(buttoni)
-		buttoni.connect("pressed", self, "_on_Button_id_pressed", [i])
-		yButton += 60
+		if global.biomes[randBiome] == 'Alien1':
+			planetAli.set_name(global.biomes[randBiome] + str(i))
+			planetAli.set_position(Vector2(randi() % 500, randi() % 500))
+			add_child(planetAli)
+		elif global.biomes[randBiome] == 'Desert1':
+			planetAli.set_name(global.biomes[randBiome] + str(i))
+			planetAli.set_position(Vector2(randi() % 500, randi() % 500))
+			add_child(planetAli)
+		elif global.biomes[randBiome] == 'Jungle1':
+			planetAli.set_name(global.biomes[randBiome] + str(i))
+			planetAli.set_position(Vector2(randi() % 500, randi() % 500))
+			add_child(planetAli)
+		print(global.biomes[randBiome] + str(i))
+#		buttoni.set_name("Button" + str(i))
+#		buttoni.set_position(Vector2(40, yButton))
+#		buttoni.set_text(name)
+#		add_child(buttoni)
+#		buttoni.connect("pressed", self, "_on_Button_id_pressed", [i])
+#		yButton += 60
 		
 		
 		global.worlds.append([name, global.biomes[randBiome], worldSeed, height, worldSize])

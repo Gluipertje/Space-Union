@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/Rock1.png" type="Texture" id=1]
+[ext_resource path="res://assets/Backgrounds/space.png" type="Texture" id=1]
 [ext_resource path="res://src/gamelogic/GUI/chooseworld.gd" type="Script" id=2]
+[ext_resource path="res://src/misc/spaceships.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/obj/alien1/planetAl.tscn" type="PackedScene" id=4]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -11,10 +13,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Rock1" type="Sprite" parent="."]
-position = Vector2( 709.737, -1403.98 )
-scale = Vector2( 135.255, 135.255 )
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1920, 1080 )
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 3 )]
 
 [node name="Button0" type="Button" parent="."]
 visible = false
@@ -49,3 +54,6 @@ margin_left = 79.4102
 margin_top = 331.958
 margin_right = 372.41
 margin_bottom = 390.958
+
+[node name="Area2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( 92.8604, 57.0377 )

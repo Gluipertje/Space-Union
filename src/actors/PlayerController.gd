@@ -28,8 +28,9 @@ func _ready():
 	#jetpackParticle.set_one_shot(true) # Makes it so the particles dont constantly emit but only in bursts
 
 func _physics_process(delta):
-	_velocity = move(_velocity, _direction)
-	_velocity = move_and_slide(_velocity, Vector2.UP) # Applies the velocity every frame
+	if !global.isInShip:
+		_velocity = move(_velocity, _direction)
+		_velocity = move_and_slide(_velocity, Vector2.UP) # Applies the velocity every frame
 	checkWorldEnd()
 	doZoom()
 	FPSText.text = ('FPS: ' + str(Engine.get_frames_per_second())) # Prints FPS

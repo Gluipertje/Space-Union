@@ -14,7 +14,6 @@ func _enter_tree() -> void:
 
 func _input_event(viewport, event, shape_idx):
 	if event.is_action_pressed('lclick'):
-		print("Clicked")
 		var particles_inst = particles.instance()
 		add_child(particles_inst)
 
