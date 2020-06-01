@@ -34,11 +34,10 @@ PlayerStats="*res://src/gamelogic/playerStats.gd"
 
 [display]
 
-window/size/width=1280
-window/size/height=720
+window/size/width=1920
+window/size/height=1080
+window/dpi/allow_hidpi=true
 window/vsync/use_vsync=false
-window/stretch/mode="2d"
-window/stretch/aspect="keep_height"
 
 [input]
 

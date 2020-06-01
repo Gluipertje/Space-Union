@@ -11,6 +11,7 @@ onready var camera = get_node("Camera2D")
 onready var FPSText = get_node("CanvasLayer/a/FPSText")
 onready var StoneText = get_node("CanvasLayer/a/StoneText")
 onready var Credits = get_node("CanvasLayer/a/Credits")
+onready var planetName = get_node("CanvasLayer/a/ColorRect2/planetName")
 #onready var jetpackParticle = get_node( "Particles2D") # This portion gets some other nodes which are attached to the player
  
 var normalJumpStrength = 180
@@ -25,7 +26,7 @@ signal player_stats_changed # Creates a signal so when the player stats change, 
 
 func _ready():
 	emit_signal("player_stats_changed", self) # Says 'Hey, the stats of the player have changed' to us in the GUI
-	#jetpackParticle.set_one_shot(true) # Makes it so the particles dont constantly emit but only in bursts
+	planetName.text = (global.wantedWorld[0])
 
 func _physics_process(delta):
 	if !global.isInShip:
@@ -38,8 +39,6 @@ func _physics_process(delta):
 	Credits.text = ('Credits: ' + str(PlayerStats.playerCredits))
 	if Input.is_action_just_pressed("posDebug"):
 		print(get_position())
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().change_scene('res://src/scenes/chooseworld.tscn')
 	global.playerPos = get_position()
 	
 func move(_velocity, _direction):

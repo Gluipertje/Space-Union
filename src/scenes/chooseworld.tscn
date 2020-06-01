@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/Backgrounds/space.png" type="Texture" id=1]
 [ext_resource path="res://src/gamelogic/GUI/chooseworld.gd" type="Script" id=2]
 [ext_resource path="res://src/misc/spaceships.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/obj/alien1/planetAl.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sun.png" type="Texture" id=4]
+[ext_resource path="res://src/misc/station.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/misc/FadeIn.tscn" type="PackedScene" id=6]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -14,12 +16,16 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -1.10803, 0 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 1920, 1080 )
+region_rect = Rect2( 0, 0, 4000, 4000 )
 
-[node name="KinematicBody2D" parent="." instance=ExtResource( 3 )]
+[node name="ship" parent="." instance=ExtResource( 3 )]
+
+[node name="Station" parent="." instance=ExtResource( 5 )]
+position = Vector2( 132.827, 345.293 )
 
 [node name="Button0" type="Button" parent="."]
 visible = false
@@ -55,5 +61,34 @@ margin_top = 331.958
 margin_right = 372.41
 margin_bottom = 390.958
 
-[node name="Area2D" parent="." instance=ExtResource( 4 )]
-position = Vector2( 92.8604, 57.0377 )
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -339.945
+margin_top = -58.8367
+margin_right = -19.9446
+margin_bottom = -18.8367
+color = Color( 1, 1, 1, 0.219608 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect"]
+margin_left = 12.9721
+margin_top = 12.9722
+margin_right = 52.9721
+margin_bottom = 26.9722
+text = "placeHolder system"
+
+[node name="sun" type="StaticBody2D" parent="."]
+
+[node name="Sprite2" type="Sprite" parent="sun"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="sun"]
+polygon = PoolVector2Array( -8.0328, 29.923, 7.90268, 29.923, 14.0713, 27.9953, 20.1113, 23.8829, 24.0952, 20.1561, 28.2076, 13.9875, 30.1353, 7.94744, 30.0067, -7.98804, 27.9505, -13.8996, 23.9667, -19.6826, 19.9828, -24.052, 13.9427, -28.1644, 8.03119, -29.9636, -8.0328, -29.9636, -13.9443, -28.0359, -19.8559, -23.9235, -23.7113, -19.6826, -27.9521, -13.6426, -30.1369, -7.85953, -30.0083, 7.81892, -27.8236, 13.7305, -23.9683, 19.899, -20.1129, 23.8829, -14.2014, 27.8668 )
+
+[node name="Node2D" parent="." instance=ExtResource( 6 )]

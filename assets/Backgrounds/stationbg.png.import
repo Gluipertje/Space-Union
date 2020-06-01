@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/stationbg.png-93830e96f03b493e454b1c116a72eb95.image"
+
+[deps]
+
+source_file="res://assets/Backgrounds/stationbg.png"
+dest_files=[ "res://.import/stationbg.png-93830e96f03b493e454b1c116a72eb95.image" ]
+
+[params]
+

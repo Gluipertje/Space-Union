@@ -1,0 +1,113 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/Backgrounds/space.png" type="Texture" id=1]
+[ext_resource path="res://assets/Font1.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/misc/scroll.gd" type="Script" id=3]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -5.01184, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 4096, 2170 )
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -755.63
+margin_top = 2550.23
+margin_right = 751.37
+margin_bottom = 2795.23
+custom_fonts/font = ExtResource( 2 )
+text = "A Game By:
+Robin van Ruitenbeek"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -755.63
+margin_top = 1500.23
+margin_right = 751.37
+margin_bottom = 1849.23
+custom_fonts/font = ExtResource( 2 )
+text = "In Collaboration with:
+Merijn Sandvliet
+and
+Chris Silvius"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -755.63
+margin_top = 3432.59
+margin_right = 751.37
+margin_bottom = 3781.59
+custom_fonts/font = ExtResource( 2 )
+text = "Special Thanks to:
+The godot engine team
+r/godot
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -755.63
+margin_top = 479.782
+margin_right = 751.37
+margin_bottom = 828.782
+custom_fonts/font = ExtResource( 2 )
+text = "Thanks for playing!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 28.0
+autostart = true
+[connection signal="timeout" from="Timer" to="Control" method="_on_Timer_timeout"]

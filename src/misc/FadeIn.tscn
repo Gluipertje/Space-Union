@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/misc/FadeIn.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fadein"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 6.06286 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[node name="Node2D" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 2932.0
+margin_bottom = 1649.0
+mouse_filter = 1
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
+anims/fadein = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="ColorRect"]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="Timer2" type="Timer" parent="ColorRect"]
+wait_time = 1.5
+autostart = true
+[connection signal="timeout" from="ColorRect/Timer" to="ColorRect" method="_on_Timer_timeout"]
+[connection signal="timeout" from="ColorRect/Timer2" to="ColorRect" method="_on_Timer2_timeout"]

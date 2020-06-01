@@ -46,8 +46,10 @@ layer = 0
 [node name="a" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.277374
-margin_right = 0.277344
+margin_left = -3.81052
+margin_top = 0.291985
+margin_right = -3.81055
+margin_bottom = 0.291992
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -62,7 +64,29 @@ margin_left = 28.0
 margin_top = 27.0
 margin_right = 246.0
 margin_bottom = 167.0
-color = Color( 0.109804, 0.109804, 0.109804, 1 )
+rect_pivot_offset = Vector2( 109, 140 )
+color = Color( 0.207843, 0.207843, 0.207843, 0.631373 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/a"]
+margin_left = 28.0
+margin_top = 180.258
+margin_right = 246.0
+margin_bottom = 208.258
+rect_pivot_offset = Vector2( 109, 140 )
+color = Color( 0.207843, 0.207843, 0.207843, 0.631373 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="planetName" type="Label" parent="CanvasLayer/a/ColorRect2"]
+margin_left = 9.65747
+margin_top = 6.62811
+margin_right = 86.6575
+margin_bottom = 20.6281
+text = "placeHolder"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -95,7 +119,7 @@ margin_bottom = 70.6544
 rect_scale = Vector2( 1.90157, 1.54085 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
-color = Color( 0.109804, 0.109804, 0.109804, 1 )
+color = Color( 0.207843, 0.207843, 0.207843, 0.933333 )
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false

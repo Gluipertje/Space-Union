@@ -12,8 +12,9 @@ var minYvalue
 var maxYvalue
 var biomes = ["Alien1", "Desert1", "Jungle1"]
 var worlds = []
-var wantedWorld
-var playerPos
+var wantedWorld = []
+var playerPos = Vector2(20, 200)
 var isInShip
+var systemName 
 
 
