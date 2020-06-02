@@ -28,14 +28,13 @@ data = {
 "width": 400
 }
 
-[sub_resource type="ImageTexture" id=5]
+[sub_resource type="ImageTexture" id=4]
 flags = 3
 flags = 3
 image = SubResource( 7 )
 size = Vector2( 400, 50 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "fadein"
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
@@ -74,7 +73,7 @@ margin_top = -150.0
 margin_right = 0.00012207
 margin_bottom = -100.0
 rect_scale = Vector2( 3, 3 )
-texture = SubResource( 5 )
+texture = SubResource( 4 )
 expand = true
 stretch_mode = 2
 __meta__ = {
@@ -131,6 +130,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="credits" type="Label" parent="TextureRect2/ColorRect"]
+margin_left = 73.5254
+margin_top = 8.1203
+margin_right = 299.526
+margin_bottom = 22.1203
+rect_scale = Vector2( -0.2, 0.2 )
+text = "Your Credits: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Button" type="Button" parent="TextureRect2/ColorRect"]
 margin_left = 73.9593
 margin_top = 18.0
@@ -169,7 +179,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect/ColorRect"]
-anims/fadein = SubResource( 1 )
+anims/fadein = SubResource( 5 )
 
 [node name="Timer" type="Timer" parent="ColorRect/ColorRect"]
 wait_time = 0.5

@@ -28,8 +28,14 @@ func _physics_process(delta: float) -> void:
 		var collision = get_slide_collision(i)
 		print(collision.collider.name)
 		if collision.collider.name == 'Station':
-			global.wantedWorld = [0, 0, 0, 0, 0, Vector2(get_position())]
-			get_tree().change_scene('res://src/scenes/stationInside.tscn')
+			var fadeouti = fadeout.instance()
+			fadeouti.set_name('fadeouti')
+			add_child(fadeouti)
+			var timer1 = Timer.new()
+			timer1.connect("timeout",self,"_on_timer_timeout1") 
+			add_child(timer1)
+			timer1.set_wait_time(2.0)
+			timer1.start() 
 			return
 		if collision.collider.name == 'sun':
 			return
@@ -43,10 +49,15 @@ func _physics_process(delta: float) -> void:
 		add_child(timer)
 		timer.set_wait_time(2.0)
 		timer.start() 
-		
-	look_at(_mousepoint)
+	
+	if get_position() != _mousepoint:
+		look_at(_mousepoint)
 	
 func _on_timer_timeout():
 	print('Switching to world ' + str(global.worlds[int(collidername)]))
 	var newScene = "res://src/scenes/" + 'world' + global.worlds[int(collidername)][1] + '.tscn'
 	get_tree().change_scene(newScene)
+
+func _on_timer_timeout1():
+	global.wantedWorld = [0, 0, 0, 0, 0, Vector2(get_position())]
+	get_tree().change_scene('res://src/scenes/stationInside.tscn')
