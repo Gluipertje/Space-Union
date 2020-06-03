@@ -22,10 +22,10 @@ _global_script_class_icons={
 
 config/name="Space Union"
 run/main_scene="res://src/scenes/menu.tscn"
-boot_splash/image="res://dogemapart.png"
-boot_splash/fullsize=false
-boot_splash/bg_color=Color( 0.00392157, 0.0313726, 0.207843, 1 )
-config/icon="res://dogemapart.png"
+boot_splash/image="res://assets/misc/spaceunionlogofull.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
+config/icon="res://assets/misc/planetAlB.png"
+config/windows_native_icon="res://planetAlB(2).ico"
 
 [autoload]
 
@@ -36,8 +36,9 @@ PlayerStats="*res://src/gamelogic/playerStats.gd"
 
 window/size/width=1920
 window/size/height=1080
+window/size/resizable=false
 window/dpi/allow_hidpi=true
-window/vsync/use_vsync=false
+window/vsync/vsync_via_compositor=true
 
 [input]
 
@@ -73,6 +74,13 @@ posDebug={
 lclick={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+rclick={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
 
@@ -89,6 +97,12 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
+quality/driver/fallback_to_gles2=true
+quality/intended_usage/framebuffer_allocation=1
+quality/intended_usage/framebuffer_allocation.mobile=1
 threads/thread_model=2
+quality/filters/anisotropic_filter_level=1
+quality/shadows/filter_mode=2
+quality/shadows/filter_mode.mobile=2
 environment/default_clear_color=Color( 0.309804, 0.309804, 0.309804, 1 )
 environment/default_environment="res://default_env.tres"

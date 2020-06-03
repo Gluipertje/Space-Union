@@ -24,7 +24,7 @@ func _on_Button_pressed() -> void:
 		timer.start() 
 		
 	else:
-		print('broke ass nigga')
+		return
 
 
 func _on_Button2_pressed() -> void:

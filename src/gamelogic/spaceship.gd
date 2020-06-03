@@ -9,12 +9,10 @@ onready var fadeout = preload("res://src/misc/FadeOut.tscn")
 
 func _process(delta: float) -> void:
 	var jump = Input.is_action_just_pressed("jump")
-	print(stepify($Timer.get_time_left(),0.1))
 	if jump and global.isInShip:
 		$AnimationPlayer.play("flyUp")
 		$Timer.start()
 		timerOn = true
-		print('goin up')
 	if stepify($Timer.get_time_left(),0.1) == 0.5:
 		var fadeouti = fadeout.instance()
 		add_child(fadeouti)

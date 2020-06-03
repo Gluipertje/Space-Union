@@ -4,9 +4,7 @@
 [ext_resource path="res://src/actors/bot.gd" type="Script" id=2]
 [ext_resource path="res://assets/2DLight.png" type="Texture" id=3]
 [ext_resource path="res://src/gamelogic/trades.gd" type="Script" id=4]
-
-[sub_resource type="OccluderPolygon2D" id=1]
-polygon = PoolVector2Array( 19.6518, -11.2888, 105.224, -11.2888, 105.408, -46.8057, 19.8358, -47.1738 )
+[ext_resource path="res://assets/Font1.tres" type="DynamicFont" id=5]
 
 [node name="Area2D" type="Area2D"]
 z_index = -5
@@ -29,10 +27,11 @@ z_index = 10
 z_as_relative = false
 
 [node name="Panel" type="Panel" parent="Node2D"]
+light_mask = 0
 margin_left = 18.0
-margin_top = -49.3314
-margin_right = 108.0
-margin_bottom = -9.33142
+margin_top = -49.0
+margin_right = 130.0
+margin_bottom = -9.0
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -44,11 +43,8 @@ margin_top = 2.62236
 margin_right = 49.3217
 margin_bottom = 16.6224
 rect_scale = Vector2( 0.3, 0.3 )
+custom_fonts/font = ExtResource( 5 )
 text = "Trades:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Node2D/Panel"]
-position = Vector2( -18, 49.3314 )
-occluder = SubResource( 1 )

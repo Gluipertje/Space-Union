@@ -11,15 +11,15 @@ onready var fadeout = preload("res://src/misc/FadeOut.tscn")
 
 func _physics_process(delta: float) -> void:
 	_mousepoint = get_global_mouse_position()
-	if Input.is_action_pressed("lclick"):
+	if Input.is_action_pressed("rclick"):
 		_vector = (_mousepoint - get_position()).normalized()
 		
-	if Input.is_action_pressed("sprint") and Input.is_action_pressed("lclick"):
+	if Input.is_action_pressed("sprint") and Input.is_action_pressed("rclick"):
 		_shipSpeed = 10000
 	else:
 		_shipSpeed = _prevSpeed
 	
-	if !Input.is_action_pressed("sprint") and Input.is_action_pressed("lclick"):
+	if !Input.is_action_pressed("sprint") and Input.is_action_pressed("rclick"):
 		_shipSpeed = 5000
 		
 	move_and_slide(_vector * _shipSpeed * delta)

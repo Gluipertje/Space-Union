@@ -1,12 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/station.png" type="Texture" id=1]
+[ext_resource path="res://src/misc/station.gd" type="Script" id=2]
 
 [node name="Station" type="StaticBody2D"]
+script = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -0.122086, 0 )
+rotation = 1.5708
 polygon = PoolVector2Array( -2.95461, 5.97703, 3.11728, 5.9233, 3.06355, -5.95182, 2.04261, -6.97276, -1.87994, -6.97276, -2.79341, -6.00555 )
 
 [node name="Sprite" type="Sprite" parent="."]
+rotation = 1.5708
 texture = ExtResource( 1 )

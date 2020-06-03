@@ -16,5 +16,7 @@ var wantedWorld = []
 var playerPos = Vector2(20, 200)
 var isInShip
 var systemName 
+var maxWorldSize = 200
+var showFPS = false
 
 

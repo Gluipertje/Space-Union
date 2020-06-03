@@ -21,14 +21,13 @@ func addStCrTrade():
 func addCrStTrade():
 	var buttoni = button.instance()
 	buttoni.set_text(str(trades[0][1]) + ' credits for ' + str(trades[0][0]) + ' stone')
-	buttoni.set_position(Vector2(5, 18))
+	buttoni.set_position(Vector2(5, 25))
 	buttoni.set_scale(Vector2(0.3, 0.3))
 	add_child(buttoni)
 	buttoni.connect("pressed", self, "_on_Button_id_pressed", [1])
 	
 	
 func _on_Button_id_pressed(id):
-	print('bruh')
 	if id == 0:
 		var trade = trades[0]
 		if PlayerStats.playerInventoryStone >= trade[0]:

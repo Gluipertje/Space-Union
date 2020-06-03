@@ -90,14 +90,12 @@ func genTerrain(startGen, endGen): # Generates the terrain
 		
 		if curPos == botPos:
 			bot.set_position(Vector2(curPos * 16, global.terrainArray[curPos] - 24))
-			print('spawned bot at: ' + str(curPos * 16) + ', ' + str(global.terrainArray[curPos] - 24))
 			
 		if curPos == 0: # Defines absolute world boundaries
 			global.coordinateStart = Vector2(curPos, prevPos)
 		
 		if curPos == 10:
 			ship.set_position(Vector2(curPos * 16, global.terrainArray[curPos] - 16))
-			print('spawned ship at: ' + str(curPos * 16) + ', ' + str(global.terrainArray[curPos] - 20))
 		
 		if curPos == endGen - 1:
 			global.coordinateEnd = Vector2(curPos * 16, prevPos * 16)
@@ -106,7 +104,7 @@ func genUnderground(prevPos, curPos, rand, startGen): # Generates tiles under th
 	for i in range(prevPos + 1, 300):
 					set_cell(startGen + curPos, i, 4)
 					if randi() % 50 == 25:
-						set_cell(startGen + curPos, int(rand_range(prevPos + 1, 300)) , 3)
+						set_cell(startGen + curPos, int(rand_range(prevPos + 1, 200)) , 3)
 
 func setCameraLimit(startGen, endGen): # Defines where the camera should stop moving 
 	global._realWorldSize = map_to_world(Vector2(endGen, 0))

@@ -1,6 +1,5 @@
 extends actor
-var canJump
-var canSprint
+var canExo
 var _direction
 var _thisPos 
 var _speednew
@@ -18,8 +17,8 @@ var normalJumpStrength = 180
 var jetJumpStrenth = 150
 var JPFuel = 500.0
 var maxJPFuel = 500.0
-var JPDepletion = 0
-var JPSprintDepletion = 0
+var JPDepletion = 3.0
+var JPSprintDepletion = 1.5
 var JPRegeneration = 1.0 # This portion declares some variables specific to only the player such as jpfuel, etc.
 
 signal player_stats_changed # Creates a signal so when the player stats change, the GUI elements get updated
@@ -27,6 +26,7 @@ signal player_stats_changed # Creates a signal so when the player stats change, 
 func _ready():
 	emit_signal("player_stats_changed", self) # Says 'Hey, the stats of the player have changed' to us in the GUI
 	planetName.text = (global.wantedWorld[0])
+	FPSText.text = ''
 
 func _physics_process(delta):
 	if !global.isInShip:
@@ -34,7 +34,8 @@ func _physics_process(delta):
 		_velocity = move_and_slide(_velocity, Vector2.UP) # Applies the velocity every frame
 	checkWorldEnd()
 	doZoom()
-	FPSText.text = ('FPS: ' + str(Engine.get_frames_per_second())) # Prints FPS
+	if global.showFPS:
+		FPSText.text = ('FPS: ' + str(Engine.get_frames_per_second())) # Prints FPS
 	StoneText.text = ('Stone: ' + str(PlayerStats.playerInventoryStone))
 	Credits.text = ('Credits: ' + str(PlayerStats.playerCredits))
 	if Input.is_action_just_pressed("posDebug"):
@@ -47,9 +48,8 @@ func move(_velocity, _direction):
 	var jump = Input.is_action_just_pressed("jump")
 	var sprint = Input.is_action_pressed("sprint") # Checks if keys are pressed, if they are that specific variable gets set to 'true' in that specific frame
 	
-	if is_on_floor() and JPFuel == maxJPFuel:
-		canJump = true
-		canSprint = true
+	if JPFuel >= maxJPFuel:
+		canExo = true
 		emit_signal("player_stats_changed", self)
 	
 	if is_on_floor():
@@ -58,9 +58,8 @@ func move(_velocity, _direction):
 	
 	if !is_on_floor() and _velocity.y < maxfallvelocity:
 		_newvelocity.y += gravity * get_physics_process_delta_time()
-		emit_signal("player_stats_changed", self)
 		
-	if sprint and JPFuel > 1 and (moveRight or moveLeft) and canSprint:
+	if sprint and JPFuel >= 1 and (moveRight or moveLeft) and canExo:
 		_speednew = speed * sprintmultiplier
 		JPFuel -= JPSprintDepletion
 		emit_signal("player_stats_changed", self)
@@ -69,27 +68,27 @@ func move(_velocity, _direction):
 		if JPFuel < maxJPFuel and (is_on_floor() or _jumpCount < 2):
 			JPFuel += JPRegeneration
 			emit_signal("player_stats_changed", self)
+	
 	if JPFuel < 1:
-		canSprint = false
+		canExo = false
 
 	if Input.is_action_just_pressed("jump") and _jumpCount == 0:
 		_jumpCount += 1
 		_newvelocity.y = -normalJumpStrength
 	elif Input.is_action_just_pressed("jump") and JPFuel > 1 and _jumpCount >= 1:
-		if canJump:
+		if canExo:
 			_newvelocity.y = -normalJumpStrength
 			JPFuel -= JPDepletion
 			emit_signal("player_stats_changed", self)
 			_jumpCount += 1
 	elif Input.is_action_pressed("jump") and JPFuel > 1 and _jumpCount >= 2:
-		if canJump:
+		if canExo:
 			_newvelocity.y = -jetJumpStrenth
 			JPFuel -= JPDepletion
 			emit_signal("player_stats_changed", self)
 			_jumpCount += 1
-	if JPFuel < 1 and !is_on_floor():
-		canJump = false	
-	if JPFuel < maxJPFuel and (is_on_floor() or _jumpCount < 2):
+	
+	if JPFuel <= maxJPFuel and (is_on_floor() or _jumpCount < 2):
 		JPFuel += JPRegeneration
 		emit_signal("player_stats_changed", self)
 	
@@ -111,6 +110,8 @@ func move(_velocity, _direction):
 		get_node( "Sprite" ).set_texture(load('res://src/actors/Animations/playerFall.tres'))
 	elif _velocity.y <0:
 		get_node( "Sprite" ).set_texture(load('res://src/actors/Animations/playerIdle.tres'))
+	print(canExo)
+	print(JPFuel)
 	return _newvelocity
 	
 func checkWorldEnd():

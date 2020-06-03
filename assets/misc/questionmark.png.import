@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/questionmark.png-110c23377ee7fcd6e64d9bd45604574d.image"
+
+[deps]
+
+source_file="res://assets/misc/questionmark.png"
+dest_files=[ "res://.import/questionmark.png-110c23377ee7fcd6e64d9bd45604574d.image" ]
+
+[params]
+

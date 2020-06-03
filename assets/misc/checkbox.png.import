@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/checkbox.png-8683e23da93f27eb14ff97a18d64857f.image"
+
+[deps]
+
+source_file="res://assets/misc/checkbox.png"
+dest_files=[ "res://.import/checkbox.png-8683e23da93f27eb14ff97a18d64857f.image" ]
+
+[params]
+
