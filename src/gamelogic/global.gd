@@ -18,5 +18,5 @@ var isInShip
 var systemName 
 var maxWorldSize = 200
 var showFPS = false
-
+var startScroll = false
 

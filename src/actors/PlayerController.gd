@@ -4,14 +4,13 @@ var _direction
 var _thisPos 
 var _speednew
 var _playerPos
-var _jumpCount = 0 # This portion declares all 'private' variables which cant be accessed by other scripts
+var _jumpCount = 0 #Private variables
 
 onready var camera = get_node("Camera2D")
 onready var FPSText = get_node("CanvasLayer/a/FPSText")
 onready var StoneText = get_node("CanvasLayer/a/StoneText")
 onready var Credits = get_node("CanvasLayer/a/Credits")
-onready var planetName = get_node("CanvasLayer/a/ColorRect2/planetName")
-#onready var jetpackParticle = get_node( "Particles2D") # This portion gets some other nodes which are attached to the player
+onready var planetName = get_node("CanvasLayer/a/ColorRect2/planetName") #Nodes
  
 var normalJumpStrength = 180
 var jetJumpStrenth = 150
@@ -19,7 +18,7 @@ var JPFuel = 500.0
 var maxJPFuel = 500.0
 var JPDepletion = 3.0
 var JPSprintDepletion = 1.5
-var JPRegeneration = 1.0 # This portion declares some variables specific to only the player such as jpfuel, etc.
+var JPRegeneration = 1.0 #Stats
 
 signal player_stats_changed # Creates a signal so when the player stats change, the GUI elements get updated
 

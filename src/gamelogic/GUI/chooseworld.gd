@@ -67,19 +67,6 @@ func _ready() -> void:
 			planetAli.set_name(str(i))
 			planetAli.set_position(randPos)
 			add_child(planetAli)
-#		buttoni.set_name("Button" + str(i))
-#		buttoni.set_position(Vector2(40, yButton))
-#		buttoni.set_text(name)
-#		add_child(buttoni)
-#		buttoni.connect("pressed", self, "_on_Button_id_pressed", [i])
-#		yButton += 60
 		
 		global.worlds.append([name, global.biomes[randBiome], worldSeed, height, worldSize, randPos])
 		words.erase(words[randWord])
-	
-#func _on_Button_id_pressed(id):
-#	global.wantedWorld = global.worlds[id]
-#	print('Switching to world ' + str(global.worlds[id]))
-#	var newScene = "res://src/scenes/" + 'world' + global.worlds[id][1] + '.tscn'
-#	get_tree().change_scene(newScene)
-	
