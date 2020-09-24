@@ -4,7 +4,8 @@ A Simple 2D space exploration game made in Godot
 _(more documentation to come...)_
 
 ## Description
-Space Union is a simple 2D side-scroller in which you explore small alien worlds in search of resources to escape your current solar system.
+Space Union is a simple 2D side-scroller in which you explore small alien worlds in search of resources to escape your current solar system.</br>
+The game is available for download at: https://gluipertje.itch.io/space-union
 
 ## File Structure
 Root /</br>
