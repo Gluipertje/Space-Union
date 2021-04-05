@@ -21,7 +21,7 @@ Root /</br>
     
 ## Contributing
 Feel free to tidy up my code, add some new biomes or add something else to the project! Just make a pull request and ill see what i can do.
-As for using parts of my code in your own project, thats fine as well. Just make sure to giver me some credits if yo uuse a lot of it.
+As for using parts of my code in your own project, thats fine as well. Just make sure to give me some credits if you use a lot of it.
 
 ## License
 This project is licensed under the Apache 2.0 (ooohh law stuff copyright scary... ooh)
